@@ -84,6 +84,7 @@ strong { color: var(--texto); font-weight: 600; }
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: flex-start;
   font-family: var(--display);
   font-size: 12px;
   font-weight: 500;
@@ -118,12 +119,15 @@ strong { color: var(--texto); font-weight: 600; }
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
+  text-align: center;
 }
 
+/* A logo é a peça principal do topo: grande e no eixo, não um selo de
+   canto. O 760px do arquivo aguenta os 420 sem perder nitidez. */
 .marca-topo {
-  width: 176px;
+  width: min(420px, 78vw);
   height: auto;
-  margin-bottom: 34px;
+  margin: 0 auto 42px;
 }
 
 h1 {
@@ -133,8 +137,8 @@ h1 {
   line-height: 1.08;
   letter-spacing: -.028em;
   color: var(--texto);
-  margin: 0 0 26px;
-  max-width: 17ch;
+  margin: 0 auto 26px;
+  max-width: 19ch;
   /* Reparte as linhas para não sobrar palavra solta no fim do título. */
   text-wrap: balance;
 }
@@ -148,8 +152,8 @@ h1 em {
   font-size: clamp(17px, 1.7vw, 20px);
   line-height: 1.62;
   color: var(--corpo);
-  margin: 0 0 40px;
-  max-width: 46ch;
+  margin: 0 auto 40px;
+  max-width: 52ch;
 }
 
 .acoes {
@@ -197,9 +201,9 @@ h1 em {
    topo. É textura: fica atrás de tudo e não disputa com a leitura. */
 .pontos-topo {
   position: absolute;
-  left: -70px;
-  bottom: -110px;
-  width: 360px;
+  left: -120px;
+  bottom: -140px;
+  width: 420px;
   opacity: .22;
   pointer-events: none;
   z-index: 0;
@@ -209,13 +213,17 @@ h1 em {
 
 .topo-grade { position: relative; z-index: 1; }
 
-/* Ocupa o lado direito do topo, que ficou livre. Textura, atrás de tudo. */
+.topo .sobrenome { justify-content: center; }
+.acoes { justify-content: center; }
+
+/* Sai de trás da logo, no eixo: a marca emitindo. */
 .topo-irradia {
   position: absolute;
-  top: 50%;
-  right: -180px;
-  width: 620px;
-  transform: translateY(-50%);
+  top: 250px;
+  left: 50%;
+  width: 900px;
+  max-width: 150vw;
+  transform: translate(-50%, -50%);
   opacity: .16;
   pointer-events: none;
   z-index: 0;
@@ -224,7 +232,7 @@ h1 em {
 }
 
 @media (max-width: 940px) {
-  .topo-irradia { width: 440px; right: -190px; opacity: .12; }
+  .topo-irradia { width: 620px; top: 190px; opacity: .13; }
 }
 
 @media (max-width: 940px) {
