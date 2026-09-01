@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Observatório VDI — o censo que mede a inovação em Lavras</title>
-<meta name="description" content="O Observatório VDI mede o ecossistema de inovação de Lavras. Um censo a cada seis meses, respondido pelas startups do Vale dos Ipês, que troca estimativa por dado declarado.">
+<meta name="description" content="Nove dimensões, a cada seis meses, declaradas pelas startups do Vale dos Ipês. O censo que troca estimativa por dado real e orienta as políticas de inovação de Lavras.">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Observatório VDI">
 <meta property="og:title" content="Observatório VDI — o censo que mede a inovação em Lavras">
-<meta property="og:description" content="Um censo a cada seis meses, respondido pelas startups do Vale dos Ipês. É dele que sai o retrato que orienta as políticas de inovação da cidade.">
+<meta property="og:description" content="Nove dimensões, a cada seis meses, declaradas pelas startups do Vale dos Ipês. O primeiro ciclo ainda não fechou.">
 <meta property="og:image" content="https://observatorio.lvrs.com.br/assets/logo.png">
 <meta property="og:url" content="https://observatorio.lvrs.com.br/">
 <meta name="twitter:card" content="summary_large_image">
@@ -18,147 +18,218 @@
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- A versao no fim do endereco força o navegador a buscar a folha nova
-     quando o site é republicado, em vez de reaproveitar a antiga.
-     Incrementar a cada mudança no style.css. -->
-<link rel="stylesheet" href="style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- A versao no fim do endereco força o navegador a buscar a folha nova quando
+     o site é republicado. Incrementar a cada mudança no style.css. -->
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
-<header class="abertura">
-  <img class="espiral" src="assets/espiral.png" alt="" aria-hidden="true">
+<div class="malha" aria-hidden="true"></div>
 
-  <img class="marca" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
+<header class="topo">
+  <div class="caixa topo-grade">
 
-  <h1>O Observatório VDI mede o <em>ecossistema de inovação</em> de Lavras.</h1>
+    <div class="topo-texto">
+      <img class="marca-topo" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
 
-  <p class="entrada">Um censo a cada seis meses, respondido pelas startups do Vale dos Ipês.
-  É dele que sai o retrato que orienta o que a cidade decide sobre inovação.</p>
+      <p class="sobrenome"><span class="ponto" aria-hidden="true"></span>Censo Semestral · Vale dos Ipês</p>
 
-  <!-- As duas perguntas que a pessoa faz antes de qualquer outra coisa.
-       Respondidas aqui, e não la embaixo, porque sao elas que decidem
-       se ela continua lendo. -->
-  <dl class="fatos">
-    <div>
-      <dt>Quanto tempo leva</dt>
-      <dd>De 50 a 60 minutos. É um diagnóstico de maturidade, não um cadastro — e dá
-      para juntar as informações antes de começar.</dd>
+      <h1>Lavras vai medir o próprio <em>ecossistema de inovação</em>.</h1>
+
+      <p class="chamada">Nove dimensões, a cada seis meses, declaradas pelas startups do
+      Vale dos Ipês. É desse retrato que saem as decisões da cidade sobre inovação —
+      e ele começa vazio.</p>
+
+      <div class="acoes">
+        <a class="botao" href="https://forms.gle/DjiXtAcWsXYxnbHJ7" target="_blank" rel="noopener">Responder o censo</a>
+        <p class="custo">50 a 60 min · dá para responder por partes</p>
+      </div>
     </div>
-    <div>
-      <dt>O que acontece com os seus números</dt>
-      <dd>Ficam sob sigilo. O que o Município publica sai sempre agregado e anonimizado:
-      o retrato é do ecossistema, nunca de uma empresa.</dd>
-    </div>
-  </dl>
 
-  <p class="assinatura">Superintendência de Políticas de Ciência, Tecnologia e Inovação<br>
-  Prefeitura Municipal de Lavras</p>
+    <!-- O radar é o assunto, não enfeite: nove eixos para os nove blocos do
+         censo, e o miolo vazio porque o primeiro ciclo ainda não fechou. -->
+    <figure class="radar">
+      <svg viewBox="0 0 400 400" role="img" aria-labelledby="radar-titulo">
+        <title id="radar-titulo">Radar de maturidade do ecossistema, com nove eixos ainda sem dados</title>
+
+        <polygon class="anel" points="200.0,165.0 222.5,173.2 234.5,193.9 230.3,217.5 212.0,232.9 188.0,232.9 169.7,217.5 165.5,193.9 177.5,173.2"/>
+        <polygon class="anel" points="200.0,130.0 245.0,146.4 268.9,187.8 260.6,235.0 223.9,265.8 176.1,265.8 139.4,235.0 131.1,187.8 155.0,146.4"/>
+        <polygon class="anel" points="200.0,95.0 267.5,119.6 303.4,181.8 290.9,252.5 235.9,298.7 164.1,298.7 109.1,252.5 96.6,181.8 132.5,119.6"/>
+        <polygon class="anel anel-fora" points="200.0,60.0 290.0,92.8 337.9,175.7 321.2,270.0 247.9,331.6 152.1,331.6 78.8,270.0 62.1,175.7 110.0,92.8"/>
+
+        <line class="eixo" x1="200" y1="200" x2="200.0" y2="60.0"/>
+        <line class="eixo" x1="200" y1="200" x2="290.0" y2="92.8"/>
+        <line class="eixo" x1="200" y1="200" x2="337.9" y2="175.7"/>
+        <line class="eixo" x1="200" y1="200" x2="321.2" y2="270.0"/>
+        <line class="eixo" x1="200" y1="200" x2="247.9" y2="331.6"/>
+        <line class="eixo" x1="200" y1="200" x2="152.1" y2="331.6"/>
+        <line class="eixo" x1="200" y1="200" x2="78.8" y2="270.0"/>
+        <line class="eixo" x1="200" y1="200" x2="62.1" y2="175.7"/>
+        <line class="eixo" x1="200" y1="200" x2="110.0" y2="92.8"/>
+
+        <polygon class="nucleo" points="200.0,184.0 210.3,187.7 215.8,197.2 213.9,208.0 205.5,215.0 194.5,215.0 186.1,208.0 184.2,197.2 189.7,187.7"/>
+        <circle class="centro" cx="200" cy="200" r="3.5"/>
+
+        <circle class="vertice" cx="200.0" cy="60.0" r="3"/>
+        <circle class="vertice" cx="290.0" cy="92.8" r="3"/>
+        <circle class="vertice" cx="337.9" cy="175.7" r="3"/>
+        <circle class="vertice" cx="321.2" cy="270.0" r="3"/>
+        <circle class="vertice" cx="247.9" cy="331.6" r="3"/>
+        <circle class="vertice" cx="152.1" cy="331.6" r="3"/>
+        <circle class="vertice" cx="78.8" cy="270.0" r="3"/>
+        <circle class="vertice" cx="62.1" cy="175.7" r="3"/>
+        <circle class="vertice" cx="110.0" cy="92.8" r="3"/>
+
+        <text class="rot" x="200.0" y="36.0">01</text>
+        <text class="rot" x="308.0" y="75.3">02</text>
+        <text class="rot" x="365.4" y="174.8">03</text>
+        <text class="rot" x="345.5" y="288.0">04</text>
+        <text class="rot" x="257.5" y="361.9">05</text>
+        <text class="rot" x="142.5" y="361.9">06</text>
+        <text class="rot" x="54.5" y="288.0">07</text>
+        <text class="rot" x="34.6" y="174.8">08</text>
+        <text class="rot" x="92.0" y="75.3">09</text>
+      </svg>
+
+      <figcaption>Maturidade do ecossistema <span>aguardando o 1º ciclo</span></figcaption>
+    </figure>
+
+  </div>
 </header>
 
 <main>
 
-  <section class="secao">
-    <p class="numero">01</p>
-    <h2>Por que ele existe</h2>
+  <section class="faixa">
+    <div class="caixa">
+      <p class="sobrenome">01 — 09</p>
+      <h2>As nove dimensões</h2>
+      <p class="conduz">Cada eixo do radar é um bloco do censo. Juntar isto antes evita
+      parar no meio para procurar número.</p>
 
-    <p>Lavras decide sobre inovação o tempo todo: onde colocar incentivo fiscal, que
-    programa abrir, que projeto priorizar, o que levar a um investidor. Até aqui, decidia
-    em cima de estimativa e de impressão.</p>
-
-    <p>O Observatório existe para trocar isso por <strong>dado declarado pelas próprias
-    startups</strong>. Ele pergunta a cada uma onde ela está, do que precisa e o que a está
-    travando — e devolve, para a cidade, o tamanho real do que ela tem.</p>
-
-    <p>É assim que se mede o peso da tecnologia e do agrofoodtech na economia do município,
-    e é assim que uma política de fomento consegue mirar numa necessidade concreta em vez
-    de num palpite.</p>
-
-    <p>E porque o censo se <em>repete</em> a cada seis meses, ele não mostra só onde o
-    ecossistema está. Mostra para onde ele se move.</p>
+      <ol class="dimensoes">
+        <li>
+          <span class="dim-n">01</span>
+          <h3>Identificação</h3>
+          <p>CNPJ, endereço, vertical, tecnologias e fase do negócio</p>
+        </li>
+        <li>
+          <span class="dim-n">02</span>
+          <h3>Sócios</h3>
+          <p>Quem conduz, contato e área de atuação de cada um</p>
+        </li>
+        <li>
+          <span class="dim-n">03</span>
+          <h3>Time</h3>
+          <p>As habilidades-chave que já existem e as que ainda faltam</p>
+        </li>
+        <li>
+          <span class="dim-n">04</span>
+          <h3>Mercado</h3>
+          <p>Tamanho, nicho, concorrentes, vantagem competitiva e fornecedores</p>
+        </li>
+        <li>
+          <span class="dim-n">05</span>
+          <h3>Dor e solução</h3>
+          <p>Quem é o cliente, o que dói nele e o que a startup resolve</p>
+        </li>
+        <li>
+          <span class="dim-n">06</span>
+          <h3>Modelo de negócio</h3>
+          <p>Como faz dinheiro, qual a receita e por que isso escala</p>
+        </li>
+        <li>
+          <span class="dim-n">07</span>
+          <h3>Tração</h3>
+          <p>Clientes, funil, faturamento bruto anual e crescimento</p>
+        </li>
+        <li>
+          <span class="dim-n">08</span>
+          <h3>Recursos</h3>
+          <p>Caixa, captação, investidores mapeados e empregos em Lavras</p>
+        </li>
+        <li>
+          <span class="dim-n">09</span>
+          <h3>Vale dos Ipês</h3>
+          <p>Incentivo fiscal, Sandbox e os 12 projetos prioritários</p>
+        </li>
+      </ol>
+    </div>
   </section>
 
-  <section class="secao">
-    <p class="numero">02</p>
-    <h2>O que muda para quem responde</h2>
+  <section class="faixa faixa-escura">
+    <div class="caixa">
+      <p class="sobrenome">Por que existe</p>
+      <h2>Um instrumento, não um formulário</h2>
 
-    <p class="conduz">Responder não é prestar contas à Prefeitura. É entrar na conta que
-    orienta o apoio.</p>
-
-    <p><strong>O que trava você passa a ser o que orienta o apoio.</strong> O censo pergunta
-    o que mais impede o seu crescimento nos próximos seis meses — e é essa resposta que
-    direciona o suporte dos ambientes de inovação do ecossistema.</p>
-
-    <p><strong>Você diz com quais dos 12 projetos prioritários pode interagir.</strong> Não é
-    pergunta retórica: é por ali que sai a conexão entre a sua startup e o que a cidade já
-    está construindo.</p>
-
-    <p><strong>Incentivo fiscal e Sandbox entram no mapa.</strong> O censo registra quem já
-    usa ou pretende acessar incentivo fiscal municipal, e quem quer testar solução no
-    Sandbox Regulatório.</p>
-
-    <p><strong>Um ecossistema medido consegue se apresentar.</strong> Os relatórios agregados
-    são o que Lavras leva para investidor, para edital e para imprensa — e a sua startup
-    está dentro desse número.</p>
+      <div class="teses">
+        <article>
+          <p class="tese">Troca estimativa por dado declarado.</p>
+          <p>Lavras decide sobre incentivo fiscal, programa e projeto o tempo todo. Até
+          aqui, decidia por impressão.</p>
+        </article>
+        <article>
+          <p class="tese">Mede o peso real da tecnologia no PIB.</p>
+          <p>Quanto a tecnologia e o agrofoodtech movimentam de fato na economia do
+          município — em número, não em discurso.</p>
+        </article>
+        <article>
+          <p class="tese">Mostra movimento, não só posição.</p>
+          <p>Porque se repete a cada seis meses, revela para onde o ecossistema está
+          indo, e não apenas onde ele está.</p>
+        </article>
+      </div>
+    </div>
   </section>
 
-  <section class="secao">
-    <p class="numero">03</p>
-    <h2>O que ter em mãos antes de começar</h2>
+  <section class="faixa">
+    <div class="caixa par">
 
-    <p class="conduz">São nove blocos. Juntar isto antes evita parar no meio para procurar
-    número.</p>
+      <div class="painel">
+        <p class="painel-rot">O que você ganha</p>
+        <ul class="lista">
+          <li><strong>O que trava você orienta o apoio.</strong> O censo pergunta o que mais
+          impede o seu crescimento — e é isso que direciona os ambientes de inovação.</li>
+          <li><strong>Conexão com os 12 projetos.</strong> Você diz com quais deles a sua
+          startup pode interagir, e a resposta vira ponte.</li>
+          <li><strong>Incentivo fiscal e Sandbox no mapa.</strong> Quem já usa, e quem quer
+          testar solução, entra no registro.</li>
+        </ul>
+      </div>
 
-    <ol class="blocos">
-      <li><span>Informações gerais</span> — CNPJ, endereço, vertical, tecnologias que você usa e a fase do negócio</li>
-      <li><span>Sócios e fundadores</span> — nome, contato e área de atuação de cada um</li>
-      <li><span>Time</span> — que habilidades-chave já existem e quais ainda faltam</li>
-      <li><span>Mercado</span> — tamanho do mercado e do seu nicho, concorrentes diretos e indiretos, fornecedores</li>
-      <li><span>Dor e solução</span> — quem é o cliente, como você identificou a dor dele e o que a sua solução resolve</li>
-      <li><span>Modelo de negócio</span> — como você faz dinheiro e por que isso escala</li>
-      <li><span>Tração</span> — faixa de clientes, funil, faturamento bruto anual e taxa de crescimento</li>
-      <li><span>Recursos e investimento</span> — caixa para 12 meses, captação já feita, investidores mapeados e empregos diretos em Lavras</li>
-      <li><span>Vale dos Ipês e LVRS+</span> — incentivo fiscal, Sandbox e os 12 projetos prioritários</li>
-    </ol>
+      <div class="painel painel-sigilo">
+        <p class="painel-rot">O que acontece com os seus números</p>
+        <p class="sigilo-forte">Ficam sob sigilo. O que o Município publica sai sempre
+        <strong>agregado e anonimizado</strong>.</p>
+        <p>O retrato é do ecossistema, nunca de uma empresa. Dados pessoais — contatos e
+        endereços residenciais — não vão para documento de acesso público.</p>
+        <p class="legal">Lei Federal nº 13.709/2018 (LGPD)<br>
+        Orientação Administrativa Municipal nº 001/2026/CTTC</p>
+      </div>
 
-    <p class="nota">O formulário aceita resposta parcial e permite voltar e corrigir depois
-    de enviar. Quem responde é toda startup do Vale dos Ipês, em qualquer estágio — da
-    ideação à escala. Não é preciso ter faturamento, investimento ou CNPJ maduro: parte do
-    que o censo quer descobrir é justamente quantas estão começando agora.</p>
-  </section>
-
-  <section class="secao">
-    <p class="numero">04</p>
-    <h2>O sigilo, por escrito</h2>
-
-    <p>O censo pede informação estratégica, financeira e corporativa. A regra do que
-    acontece com ela está escrita antes da primeira pergunta, não depois.</p>
-
-    <p>Essas informações são protegidas por sigilo e tratadas com finalidade exclusiva de
-    executar o planejamento das políticas públicas do ecossistema de inovação. Dados
-    pessoais — contatos e endereços residenciais — não são publicados em documento de
-    acesso público. Os relatórios macroeconômicos e de diagnóstico que o Município divulga
-    saem <strong>unicamente com os dados de forma agregada e anonimizada</strong>.</p>
-
-    <p class="legal">Lei Geral de Proteção de Dados — Lei Federal nº 13.709/2018<br>
-    Orientação Administrativa Municipal nº 001/2026/CTTC</p>
+    </div>
   </section>
 
   <section class="fecho">
-    <p>O primeiro ciclo ainda não fechou. O retrato do ecossistema de Lavras é, hoje,
-    exatamente o que as startups daqui responderem.</p>
-    <a class="botao" href="https://forms.gle/DjiXtAcWsXYxnbHJ7" target="_blank" rel="noopener">Responder o censo</a>
+    <div class="caixa">
+      <img class="marca" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
+      <p>O radar só sai do zero com o que as startups daqui responderem.</p>
+      <a class="botao botao-grande" href="https://forms.gle/DjiXtAcWsXYxnbHJ7" target="_blank" rel="noopener">Responder o censo</a>
+    </div>
   </section>
 
 </main>
 
 <footer>
-  <p class="rodape-marca">Observatório VDI · Censo Semestral do Vale dos Ipês</p>
-  <p class="rodape-links">
-    <a href="https://lvrs.com.br">LVRS+</a>
-    <a href="https://launch.lvrs.com.br">Launch</a>
-    <a href="https://lavraslab.lvrs.com.br">Lavras Lab</a>
-  </p>
+  <div class="caixa rodape-grade">
+    <p class="rodape-orgao">Superintendência de Políticas de Ciência, Tecnologia e Inovação<br>
+    <span>Prefeitura Municipal de Lavras</span></p>
+    <p class="rodape-links">
+      <a href="https://lvrs.com.br">LVRS+</a>
+      <a href="https://launch.lvrs.com.br">Launch</a>
+      <a href="https://lavraslab.lvrs.com.br">Lavras Lab</a>
+    </p>
+  </div>
 </footer>
 
 </body>
