@@ -73,6 +73,12 @@ strong { color: var(--texto); font-weight: 600; }
   z-index: 1;
 }
 
+/* Em tela larga a coluna cresce em vez de deixar centenas de pixels
+   parados dos dois lados. */
+@media (min-width: 1400px) {
+  .caixa { max-width: 1280px; }
+}
+
 /* ---------- rótulo de seção ---------- */
 
 .sobrenome {
@@ -111,8 +117,8 @@ strong { color: var(--texto); font-weight: 600; }
 
 .topo-grade {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 430px);
-  gap: 68px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 52px;
   align-items: center;
 }
 
@@ -223,21 +229,38 @@ h1 em {
   overflow: visible;
 }
 
-/* Elemento da identidade: a explosão radial atrás do radar. Fica bem
-   apagada — é o alcance do instrumento, não um desenho concorrente. */
-.irradia {
+/* Numa tela larga a coluna trava em 1120px e sobram centenas de pixels
+   vazios dos dois lados. É lá que os elementos da identidade trabalham:
+   grandes, sangrando pela borda, atrás do conteúdo. */
+.margem {
   position: absolute;
   top: 50%;
-  left: 50%;
-  width: 130%;
-  transform: translate(-50%, -50%);
-  opacity: .17;
+  transform: translateY(-50%);
   pointer-events: none;
   z-index: 0;
-  /* Sem a máscara os raios chegam inteiros na borda e competem com o
-     radar. Dissolvidos, viram emissão saindo do centro. */
-  -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 80%);
-  mask-image: radial-gradient(circle, #000 30%, transparent 80%);
+  opacity: .17;
+}
+
+.margem-esq { left: -110px; width: 420px; }
+
+/* A onda estava centrada na faixa e batia na marca da primeira tese.
+   Desce para o rodapé da faixa, onde só há fundo. */
+.faixa-escura .margem-esq {
+  top: auto;
+  bottom: -90px;
+  transform: none;
+  left: -170px;
+  width: 400px;
+  opacity: .14;
+}
+.margem-dir { right: -130px; width: 460px; }
+.margem-setas { width: 190px; opacity: .2; }
+.margem-pontos { width: 360px; left: -130px; }
+
+/* Some abaixo de 1360px: sem margem sobrando, elas passariam por cima
+   do texto em vez de ocupar vazio. */
+@media (max-width: 1360px) {
+  .margem { display: none; }
 }
 
 .anel {
@@ -276,12 +299,13 @@ h1 em {
   50% { opacity: .35; }
 }
 
+/* O `text-anchor` vem do próprio SVG, calculado por eixo: ao lado direito
+   ancora no começo, ao esquerdo no fim, em cima e embaixo no meio. */
 .rot {
   font-family: var(--display);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
-  fill: var(--fraco);
-  text-anchor: middle;
+  fill: var(--corpo);
 }
 
 .radar figcaption {
@@ -313,6 +337,7 @@ h1 em {
 .faixa {
   padding: 92px 0;
   position: relative;
+  overflow: hidden;
 }
 
 .faixa-escura {
@@ -643,7 +668,7 @@ footer {
     gap: 56px;
   }
 
-  .radar { max-width: 400px; margin: 0 auto; }
+  .radar { max-width: 520px; margin: 0 auto; }
 
   .dimensoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .teses { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
@@ -669,13 +694,14 @@ footer {
 
   /* Com 340px de radar os rótulos ficariam com 10px reais; um pouco
      maiores no viewBox compensam a redução. */
-  .radar { max-width: 340px; }
-  .rot { font-size: 14px; }
+  .radar { max-width: 100%; }
+  .rot { font-size: 17px; }
 
   /* A legenda quebra em duas linhas aqui: sem o fio, que ficaria pendurado
      no começo da segunda. */
-  .radar figcaption { margin-top: 20px; font-size: 11px; gap: 4px; }
-  .radar figcaption span { padding-left: 0; border-left: 0; }
+  /* Sem o fio divisor as duas partes ficavam emendadas numa frase só. */
+  .radar figcaption { margin-top: 20px; font-size: 11px; gap: 6px; }
+  .radar figcaption span { flex-basis: 100%; padding-left: 0; border-left: 0; }
 
   .faixa { padding: 56px 0; }
   .dimensoes { grid-template-columns: minmax(0, 1fr); }

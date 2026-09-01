@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- A versao no fim do endereco força o navegador a buscar a folha nova quando
      o site é republicado. Incrementar a cada mudança no style.css. -->
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 
@@ -55,50 +55,41 @@
     <!-- O radar é o assunto, não enfeite: nove eixos para os nove blocos do
          censo, e o miolo vazio porque o primeiro ciclo ainda não fechou. -->
     <figure class="radar">
-      <!-- A explosao radial da identidade atras do radar: a abertura do
-           instrumento, o alcance de onde o dado vem. -->
-      <img class="irradia" src="assets/elementos/irradia.png" alt="" aria-hidden="true">
-
-      <svg viewBox="0 0 400 400" role="img" aria-labelledby="radar-titulo">
-        <title id="radar-titulo">Radar de maturidade do ecossistema, com nove eixos ainda sem dados</title>
-
-        <polygon class="anel" points="200.0,165.0 222.5,173.2 234.5,193.9 230.3,217.5 212.0,232.9 188.0,232.9 169.7,217.5 165.5,193.9 177.5,173.2"/>
-        <polygon class="anel" points="200.0,130.0 245.0,146.4 268.9,187.8 260.6,235.0 223.9,265.8 176.1,265.8 139.4,235.0 131.1,187.8 155.0,146.4"/>
-        <polygon class="anel" points="200.0,95.0 267.5,119.6 303.4,181.8 290.9,252.5 235.9,298.7 164.1,298.7 109.1,252.5 96.6,181.8 132.5,119.6"/>
-        <polygon class="anel anel-fora" points="200.0,60.0 290.0,92.8 337.9,175.7 321.2,270.0 247.9,331.6 152.1,331.6 78.8,270.0 62.1,175.7 110.0,92.8"/>
-
-        <line class="eixo" x1="200" y1="200" x2="200.0" y2="60.0"/>
-        <line class="eixo" x1="200" y1="200" x2="290.0" y2="92.8"/>
-        <line class="eixo" x1="200" y1="200" x2="337.9" y2="175.7"/>
-        <line class="eixo" x1="200" y1="200" x2="321.2" y2="270.0"/>
-        <line class="eixo" x1="200" y1="200" x2="247.9" y2="331.6"/>
-        <line class="eixo" x1="200" y1="200" x2="152.1" y2="331.6"/>
-        <line class="eixo" x1="200" y1="200" x2="78.8" y2="270.0"/>
-        <line class="eixo" x1="200" y1="200" x2="62.1" y2="175.7"/>
-        <line class="eixo" x1="200" y1="200" x2="110.0" y2="92.8"/>
-
-        <polygon class="nucleo" points="200.0,184.0 210.3,187.7 215.8,197.2 213.9,208.0 205.5,215.0 194.5,215.0 186.1,208.0 184.2,197.2 189.7,187.7"/>
-        <circle class="centro" cx="200" cy="200" r="3.5"/>
-
-        <circle class="vertice" cx="200.0" cy="60.0" r="3"/>
-        <circle class="vertice" cx="290.0" cy="92.8" r="3"/>
-        <circle class="vertice" cx="337.9" cy="175.7" r="3"/>
-        <circle class="vertice" cx="321.2" cy="270.0" r="3"/>
-        <circle class="vertice" cx="247.9" cy="331.6" r="3"/>
-        <circle class="vertice" cx="152.1" cy="331.6" r="3"/>
-        <circle class="vertice" cx="78.8" cy="270.0" r="3"/>
-        <circle class="vertice" cx="62.1" cy="175.7" r="3"/>
-        <circle class="vertice" cx="110.0" cy="92.8" r="3"/>
-
-        <text class="rot" x="200.0" y="36.0">01</text>
-        <text class="rot" x="308.0" y="75.3">02</text>
-        <text class="rot" x="365.4" y="174.8">03</text>
-        <text class="rot" x="345.5" y="288.0">04</text>
-        <text class="rot" x="257.5" y="361.9">05</text>
-        <text class="rot" x="142.5" y="361.9">06</text>
-        <text class="rot" x="54.5" y="288.0">07</text>
-        <text class="rot" x="34.6" y="174.8">08</text>
-        <text class="rot" x="92.0" y="75.3">09</text>
+      <svg viewBox="0 0 570 420" role="img" aria-labelledby="radar-titulo">
+        <title id="radar-titulo">Radar das nove dimensões do censo, ainda sem dados</title>
+        <polygon class="anel" points="285.0,176.0 305.6,183.5 316.5,202.4 312.7,224.0 295.9,238.1 274.1,238.1 257.3,224.0 253.5,202.4 264.4,183.5"/>
+        <polygon class="anel" points="285.0,144.0 326.1,159.0 348.0,196.9 340.4,240.0 306.9,268.1 263.1,268.1 229.6,240.0 222.0,196.9 243.9,159.0"/>
+        <polygon class="anel" points="285.0,112.0 346.7,134.5 379.5,191.3 368.1,256.0 317.8,298.2 252.2,298.2 201.9,256.0 190.5,191.3 223.3,134.5"/>
+        <polygon class="anel anel-fora" points="285.0,80.0 367.3,109.9 411.1,185.8 395.9,272.0 328.8,328.3 241.2,328.3 174.1,272.0 158.9,185.8 202.7,109.9"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="285.0" y2="80.0"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="367.3" y2="109.9"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="411.1" y2="185.8"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="395.9" y2="272.0"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="328.8" y2="328.3"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="241.2" y2="328.3"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="174.1" y2="272.0"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="158.9" y2="185.8"/>
+        <line class="eixo" x1="285.0" y1="208.0" x2="202.7" y2="109.9"/>
+        <polygon class="nucleo" points="285.0,193.0 294.6,196.5 299.8,205.4 298.0,215.5 290.1,222.1 279.9,222.1 272.0,215.5 270.2,205.4 275.4,196.5"/>
+        <circle class="centro" cx="285" cy="208" r="3.5"/>
+        <circle class="vertice" cx="285.0" cy="80.0" r="3"/>
+        <circle class="vertice" cx="367.3" cy="109.9" r="3"/>
+        <circle class="vertice" cx="411.1" cy="185.8" r="3"/>
+        <circle class="vertice" cx="395.9" cy="272.0" r="3"/>
+        <circle class="vertice" cx="328.8" cy="328.3" r="3"/>
+        <circle class="vertice" cx="241.2" cy="328.3" r="3"/>
+        <circle class="vertice" cx="174.1" cy="272.0" r="3"/>
+        <circle class="vertice" cx="158.9" cy="185.8" r="3"/>
+        <circle class="vertice" cx="202.7" cy="109.9" r="3"/>
+        <text class="rot" x="285.0" y="58.0" text-anchor="middle">Identificação</text>
+        <text class="rot" x="377.6" y="101.7" text-anchor="start">Sócios</text>
+        <text class="rot" x="426.8" y="187.0" text-anchor="start">Time</text>
+        <text class="rot" x="409.7" y="284.0" text-anchor="start">Mercado</text>
+        <text class="rot" x="334.3" y="347.3" text-anchor="start">Dor e solução</text>
+        <text class="rot" x="235.7" y="347.3" text-anchor="end">Modelo</text>
+        <text class="rot" x="160.3" y="284.0" text-anchor="end">Tração</text>
+        <text class="rot" x="143.2" y="187.0" text-anchor="end">Recursos</text>
+        <text class="rot" x="192.4" y="101.7" text-anchor="end">Vale dos Ipês</text>
       </svg>
 
       <figcaption>Maturidade do ecossistema <span>aguardando o 1º ciclo</span></figcaption>
@@ -110,6 +101,7 @@
 <main>
 
   <section class="faixa">
+    <img class="margem margem-dir" src="assets/elementos/irradia.png" alt="" aria-hidden="true">
     <div class="caixa">
       <p class="sobrenome">01 — 09</p>
       <h2>As nove dimensões</h2>
@@ -167,6 +159,8 @@
   </section>
 
   <section class="faixa faixa-escura">
+    <img class="margem margem-esq" src="assets/elementos/ondas.png" alt="" aria-hidden="true">
+    <img class="margem margem-dir margem-setas" src="assets/elementos/setas.png" alt="" aria-hidden="true">
     <div class="caixa">
       <p class="sobrenome">Por que existe</p>
       <h2>Um instrumento, não um formulário</h2>
@@ -198,6 +192,7 @@
   </section>
 
   <section class="faixa">
+    <img class="margem margem-esq margem-pontos" src="assets/elementos/pontos.png" alt="" aria-hidden="true">
     <div class="caixa par">
 
       <div class="painel">
