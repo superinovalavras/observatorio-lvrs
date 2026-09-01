@@ -42,7 +42,11 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+/* O `height: auto` é obrigatório aqui: as imagens trazem width/height no
+   atributo (que reserva espaço e evita o pulo do layout), e sem isso uma
+   regra que define só a largura espreme a imagem para a altura do atributo.
+   Foi o que aconteceu com a logo do fecho: 210x521 em vez de 210x144. */
+img { max-width: 100%; height: auto; display: block; }
 strong { color: var(--texto); font-weight: 600; }
 
 /* Papel milimetrado de fundo. Muito discreto — dá textura de instrumento
@@ -192,9 +196,28 @@ h1 em {
 }
 
 .radar svg {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   overflow: visible;
+}
+
+/* Elemento da identidade: a explosão radial atrás do radar. Fica bem
+   apagada — é o alcance do instrumento, não um desenho concorrente. */
+.irradia {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 126%;
+  transform: translate(-50%, -50%);
+  opacity: .1;
+  pointer-events: none;
+  z-index: 0;
+  /* Sem a máscara os raios chegam inteiros na borda e competem com o
+     radar. Dissolvidos, viram emissão saindo do centro. */
+  -webkit-mask-image: radial-gradient(circle, #000 34%, transparent 74%);
+  mask-image: radial-gradient(circle, #000 34%, transparent 74%);
 }
 
 .anel {
@@ -360,6 +383,22 @@ h2 {
   border-top: 2px solid var(--verde);
 }
 
+/* Um elemento da identidade por tese, escolhido pelo sentido: campo de
+   pontos para o dado declarado, setas para o peso que cresce, ondas para
+   a série que só aparece repetindo o censo. */
+/* Caixa igual para os três, com o desenho contido dentro. Limitando só
+   pela altura, as setas (tira de 222x879) sairiam com 9px de largura ao
+   lado de um círculo de 34 — a mesma armadilha das logos nos cards da
+   vitrine. */
+.marca-tese {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 18px;
+  opacity: .85;
+}
+
 .tese {
   font-family: var(--display);
   font-size: 19px;
@@ -394,8 +433,21 @@ h2 {
 }
 
 .painel-sigilo {
+  position: relative;
+  overflow: hidden;
   border-color: rgba(0, 245, 160, .28);
   background: linear-gradient(180deg, rgba(0, 245, 160, .07) 0%, rgba(18, 58, 96, .4) 100%);
+}
+
+/* A hachura da identidade marca o painel do sigilo, como o tramado de um
+   documento protegido. */
+.hachura {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  opacity: .28;
+  pointer-events: none;
 }
 
 .painel-rot {
@@ -466,12 +518,25 @@ h2 {
 /* ---------- fecho ---------- */
 
 .fecho {
+  position: relative;
+  overflow: hidden;
   padding: 104px 0 112px;
   text-align: center;
   background:
     radial-gradient(ellipse 60% 100% at 50% 100%, rgba(0, 245, 160, .1) 0%, transparent 66%),
     var(--fundo);
   border-top: 1px solid var(--fio);
+}
+
+/* A espiral da marca fecha a página, grande e quase invisível. */
+.espiral-fundo {
+  position: absolute;
+  bottom: -180px;
+  left: 50%;
+  width: 620px;
+  transform: translateX(-50%);
+  opacity: .08;
+  pointer-events: none;
 }
 
 .fecho .marca {
@@ -589,6 +654,9 @@ footer {
   .conduz { margin-bottom: 34px; }
 
   .painel { padding: 28px 22px 30px; }
+  .hachura { width: 120px; }
+  .marca-tese { width: 40px; height: 40px; margin-bottom: 14px; }
+  .espiral-fundo { width: 420px; bottom: -130px; }
 
   .fecho { padding: 76px 0 84px; }
   .fecho .marca { width: 168px; }

@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- A versao no fim do endereco força o navegador a buscar a folha nova quando
      o site é republicado. Incrementar a cada mudança no style.css. -->
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 
@@ -50,6 +50,10 @@
     <!-- O radar é o assunto, não enfeite: nove eixos para os nove blocos do
          censo, e o miolo vazio porque o primeiro ciclo ainda não fechou. -->
     <figure class="radar">
+      <!-- A explosao radial da identidade atras do radar: a abertura do
+           instrumento, o alcance de onde o dado vem. -->
+      <img class="irradia" src="assets/elementos/irradia.png" alt="" aria-hidden="true">
+
       <svg viewBox="0 0 400 400" role="img" aria-labelledby="radar-titulo">
         <title id="radar-titulo">Radar de maturidade do ecossistema, com nove eixos ainda sem dados</title>
 
@@ -164,16 +168,22 @@
 
       <div class="teses">
         <article>
+          <!-- Campo de pontos: cada startup que responde vira um dado. -->
+          <img class="marca-tese" src="assets/elementos/pontos.png" alt="" aria-hidden="true">
           <p class="tese">Troca estimativa por dado declarado.</p>
           <p>Lavras decide sobre incentivo fiscal, programa e projeto o tempo todo. Até
           aqui, decidia por impressão.</p>
         </article>
         <article>
+          <!-- Setas ascendentes: o peso e o crescimento medidos. -->
+          <img class="marca-tese" src="assets/elementos/setas.png" alt="" aria-hidden="true">
           <p class="tese">Mede o peso real da tecnologia no PIB.</p>
           <p>Quanto a tecnologia e o agrofoodtech movimentam de fato na economia do
           município — em número, não em discurso.</p>
         </article>
         <article>
+          <!-- Ondas: a serie que so aparece repetindo o censo. -->
+          <img class="marca-tese" src="assets/elementos/ondas.png" alt="" aria-hidden="true">
           <p class="tese">Mostra movimento, não só posição.</p>
           <p>Porque se repete a cada seis meses, revela para onde o ecossistema está
           indo, e não apenas onde ele está.</p>
@@ -198,6 +208,7 @@
       </div>
 
       <div class="painel painel-sigilo">
+        <img class="hachura" src="assets/elementos/hachura.png" alt="" aria-hidden="true">
         <p class="painel-rot">O que acontece com os seus números</p>
         <p class="sigilo-forte">Ficam sob sigilo. O que o Município publica sai sempre
         <strong>agregado e anonimizado</strong>.</p>
@@ -211,6 +222,7 @@
   </section>
 
   <section class="fecho">
+    <img class="espiral-fundo" src="assets/elementos/espiral.png" alt="" aria-hidden="true">
     <div class="caixa">
       <img class="marca" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
       <p>O radar só sai do zero com o que as startups daqui responderem.</p>
