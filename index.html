@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observatório VDI — Censo Semestral do Vale dos Ipês</title>
+<meta name="description" content="O censo que mede a maturidade das startups do ecossistema de inovação de Lavras. Aplicado a cada seis meses pela Superintendência de Inovação. Dados divulgados de forma agregada e anonimizada.">
+
+<!-- Como o link aparece quando alguem compartilha no WhatsApp, Instagram ou LinkedIn. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Observatório VDI">
+<meta property="og:title" content="Observatório VDI — Censo Semestral do Vale dos Ipês">
+<meta property="og:description" content="Lavras está medindo o próprio ecossistema de inovação. Se a sua startup está aqui, ela precisa aparecer nesse número.">
+<meta property="og:image" content="https://observatorio.lvrs.com.br/assets/logo.png">
+<meta property="og:url" content="https://observatorio.lvrs.com.br/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js-ready");</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<div class="scroll-rail" id="scrollRail" aria-hidden="true">
+  <span class="rail-label">Observar</span>
+  <div class="rail-track">
+    <div class="rail-fill" id="railFill"></div>
+    <img class="rail-espiral" id="railEspiral" src="assets/espiral.png" alt="">
+  </div>
+  <span class="rail-label">Responder</span>
+</div>
+
+<div class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <img class="hero-marca-agua" src="assets/elementos/8.png" alt="" aria-hidden="true">
+  <div id="heroParallax">
+    <div class="wrap">
+      <div class="hero-kicker">
+        <span class="rule" aria-hidden="true"></span>
+        <span class="eyebrow">Censo Semestral · Vale dos Ipês</span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+
+      <img class="hero-logo" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
+
+      <p class="hero-sub">Lavras está medindo o próprio ecossistema de inovação. Se a sua startup está aqui, ela precisa <em>aparecer nesse número</em>.</p>
+
+      <p class="hero-byline">Diagnóstico de maturidade das startups do Vale dos Ipês, aplicado a cada seis meses pela Superintendência de Políticas de Ciência, Tecnologia e Inovação — Prefeitura Municipal de Lavras.</p>
+    </div>
+  </div>
+</div>
+
+<div class="realizadores">
+  <p class="realizadores-titulo">Realização</p>
+  <div class="realizadores-janela">
+    <div class="realizadores-trilho">
+      <div class="realizadores-fila">
+        <img src="assets/realizadores/prefeitura.png" alt="Prefeitura Municipal de Lavras">
+        <img src="assets/realizadores/lvrs-mais.png" alt="LVRS+ — Pacto Lavras pela Inovação">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="Vale dos Ipês">
+        <img src="assets/realizadores/prefeitura.png" alt="">
+        <img src="assets/realizadores/lvrs-mais.png" alt="">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="">
+        <img src="assets/realizadores/prefeitura.png" alt="">
+        <img src="assets/realizadores/lvrs-mais.png" alt="">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="">
+      </div>
+      <div class="realizadores-fila" aria-hidden="true">
+        <img src="assets/realizadores/prefeitura.png" alt="">
+        <img src="assets/realizadores/lvrs-mais.png" alt="">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="">
+        <img src="assets/realizadores/prefeitura.png" alt="">
+        <img src="assets/realizadores/lvrs-mais.png" alt="">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="">
+        <img src="assets/realizadores/prefeitura.png" alt="">
+        <img src="assets/realizadores/lvrs-mais.png" alt="">
+        <img src="assets/realizadores/vale-dos-ipes.png" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="acoes-destaque">
+  <a class="tab-btn cta-solido" data-censo href="#">Responder o censo</a>
+  <button class="tab-btn cta-outline" data-tab="blocos" type="button">Ver o que ele pergunta</button>
+</div>
+
+<div class="tabbar" id="tabbar">
+  <div class="wrap tabbar-inner">
+    <div class="tabbar-abas">
+      <button class="tab-btn active" data-tab="oque" type="button">O que é?</button>
+      <button class="tab-btn" data-tab="quem" type="button">Quem responde?</button>
+      <button class="tab-btn" data-tab="blocos" type="button">O que ele pergunta</button>
+      <button class="tab-btn" data-tab="sigilo" type="button">Sigilo e LGPD</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="position: relative; z-index: 1;">
+
+  <!-- ============ O QUE E ============ -->
+  <section class="panel active panel-in" id="panel-oque">
+    <div class="reveal">
+      <p class="eyebrow-label">O Observatório</p>
+      <h2>Um retrato do ecossistema, <em>a cada seis meses</em>.</h2>
+      <p class="lede">O Observatório VDI é o instrumento que a Superintendência de Inovação usa para enxergar o Vale dos Ipês como ele realmente é — e não como se imagina que ele seja. O Censo Semestral pergunta a cada startup do território onde ela está, do que precisa e para onde vai. O que volta desse levantamento é a base do que a cidade decide sobre inovação.</p>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat">
+        <span class="stat-num" data-count-to="9">0</span>
+        <span class="stat-label">blocos de perguntas</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count-to="6">0</span>
+        <span class="stat-label">meses entre um ciclo e outro</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count-to="12">0</span>
+        <span class="stat-label">projetos prioritários alimentados</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="module-intro">Para que serve o dado que você entrega</p>
+      <div class="feature-list">
+        <div class="feature-row">
+          <span class="f-tag">PIB</span>
+          <p>Medir o peso real da tecnologia, do agrofoodtech e dos demais setores de inovação na economia de Lavras.</p>
+        </div>
+        <div class="feature-row">
+          <span class="f-tag">Política</span>
+          <p>Formular políticas públicas de fomento a partir de números do território, não de estimativa.</p>
+        </div>
+        <div class="feature-row">
+          <span class="f-tag">Suporte</span>
+          <p>Direcionar o apoio dos ambientes de inovação para a necessidade que cada startup declarou ter.</p>
+        </div>
+        <div class="feature-row">
+          <span class="f-tag">Série</span>
+          <p>Acompanhar a maturidade do ecossistema ao longo do tempo — é por isso que o censo se repete a cada seis meses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota-vdi reveal">
+      <img src="assets/elementos/4.png" alt="" aria-hidden="true">
+      <p><strong>Vale dos Ipês</strong> é a marca do ecossistema de inovação de Lavras. O <strong>LVRS+</strong> é o Pacto pela Inovação que o coordena, com a meta de consolidar a cidade como <em>Capital do Futuro do Alimento</em>.</p>
+    </div>
+  </section>
+
+  <!-- ============ QUEM RESPONDE ============ -->
+  <section class="panel" id="panel-quem">
+    <div class="reveal">
+      <p class="eyebrow-label">Público</p>
+      <h2>Se a sua startup está no <em>território</em>, o censo é com você.</h2>
+      <p class="lede">O convite vale para toda startup do ecossistema Vale dos Ipês, em qualquer estágio — da ideação à escala. Não é preciso ter faturamento, investimento ou CNPJ maduro para responder: parte do que o censo quer descobrir é exatamente quantas estão começando agora e o que falta para elas crescerem.</p>
+    </div>
+
+    <div class="benefit-list reveal">
+      <div class="benefit-item">
+        <h3>Suporte que chega no seu problema</h3>
+        <p>O que você declara como trava de crescimento é o que orienta o apoio dos ambientes de inovação do ecossistema.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Porta de entrada nos 12 Projetos</h3>
+        <p>O censo pergunta com quais dos 12 Projetos Prioritários do LVRS+ a sua startup pode interagir — e essa resposta vira conexão.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Incentivo fiscal e Sandbox</h3>
+        <p>Mapeia quem já usa ou pretende acessar incentivo fiscal municipal e quem quer testar solução no Sandbox Regulatório.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>Visibilidade do ecossistema</h3>
+        <p>Um ecossistema que se mede consegue se apresentar. Os relatórios agregados são o que Lavras leva para investidor, edital e imprensa.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="aviso-tempo">
+        <span class="aviso-selo">50 a 60 min</span>
+        <p>É um diagnóstico de maturidade, não um cadastro. Ele vai da governança ao faturamento, do posicionamento global ao impacto social. Reserve o tempo e responda com calma — a qualidade do retrato depende disso.</p>
+      </div>
+      <div class="acoes-fim">
+        <a class="tab-btn cta-solido" data-censo href="#">Responder o censo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ O QUE ELE PERGUNTA ============ -->
+  <section class="panel" id="panel-blocos">
+    <div class="reveal">
+      <p class="eyebrow-label">O questionário</p>
+      <h2>Nove blocos, do <em>nome da startup</em> ao lugar dela em Lavras.</h2>
+      <p class="lede">Cada bloco abre uma camada do negócio. Vale abrir o formulário já sabendo o que ele vai perguntar.</p>
+    </div>
+
+    <div class="module-list reveal">
+      <div class="module-item">
+        <span class="m-num">01</span>
+        <div>
+          <h4>Informações gerais</h4>
+          <p>Nome, CNPJ ou CPF, como a startup surgiu, vertical de atuação, tecnologias empregadas, endereço, fase do negócio e redes sociais.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">02</span>
+        <div>
+          <h4>Sócios e fundadores</h4>
+          <p>Até cinco sócios, com contato institucional, LinkedIn e área de atuação de cada um.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">03</span>
+        <div>
+          <h4>Time</h4>
+          <p>Quais habilidades-chave o time já tem, quais ainda faltam, e quais são os valores e o propósito da startup.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">04</span>
+        <div>
+          <h4>Mercado</h4>
+          <p>Tamanho do mercado total e do nicho, por que ele é relevante, que espaço existe nele, concorrentes diretos e indiretos, vantagem competitiva e fornecedores.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">05</span>
+        <div>
+          <h4>Dor de mercado e solução</h4>
+          <p>Perfil do cliente, qual dor a startup resolve, como essa dor foi identificada e como a solução responde a ela.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">06</span>
+        <div>
+          <h4>Modelo de negócio</h4>
+          <p>Como a startup faz dinheiro, qual é o modelo de receita e por que ele é escalável e sustentável.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">07</span>
+        <div>
+          <h4>Tração</h4>
+          <p>Número de clientes, como eles são monitorados, funil de vendas, faturamento bruto anual e taxa de crescimento.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">08</span>
+        <div>
+          <h4>Recursos e investimento</h4>
+          <p>Caixa para os próximos doze meses, plano de captação, investidores mapeados, investimento já captado, empregos diretos mantidos em Lavras e o que mais trava o crescimento.</p>
+        </div>
+      </div>
+      <div class="module-item">
+        <span class="m-num">09</span>
+        <div>
+          <h4>Lavras: Vale dos Ipês e LVRS+</h4>
+          <p>Uso de incentivo fiscal municipal e do Sandbox Regulatório, e com quais dos 12 Projetos Prioritários a startup pode interagir.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal acoes-fim">
+      <a class="tab-btn cta-solido" data-censo href="#">Responder o censo</a>
+    </div>
+  </section>
+
+  <!-- ============ SIGILO ============ -->
+  <section class="panel" id="panel-sigilo">
+    <div class="reveal">
+      <p class="eyebrow-label">Privacidade e transparência</p>
+      <h2>O dado da sua startup é <em>sigiloso</em>. O retrato é público.</h2>
+      <p class="lede">O censo pede informação estratégica, financeira e corporativa — e por isso a regra do que acontece com ela precisa estar escrita antes da primeira pergunta, não depois.</p>
+    </div>
+
+    <div class="feature-list reveal">
+      <div class="feature-row">
+        <span class="f-tag">Sigilo</span>
+        <p>Informações estratégicas, financeiras e corporativas da startup são protegidas por sigilo.</p>
+      </div>
+      <div class="feature-row">
+        <span class="f-tag">Finalidade</span>
+        <p>O tratamento tem finalidade exclusiva de executar o planejamento estratégico das políticas públicas do ecossistema de inovação.</p>
+      </div>
+      <div class="feature-row">
+        <span class="f-tag">Pessoais</span>
+        <p>Dados pessoais — contatos e endereços residenciais — não são publicados em documentos de acesso público.</p>
+      </div>
+      <div class="feature-row">
+        <span class="f-tag">Divulgação</span>
+        <p>Relatórios macroeconômicos e de diagnóstico são divulgados pelo Município unicamente com os dados de forma agregada e anonimizada.</p>
+      </div>
+    </div>
+
+    <div class="base-legal reveal">
+      <p class="base-legal-titulo">Base legal</p>
+      <p>Lei Geral de Proteção de Dados — <strong>Lei Federal nº 13.709/2018</strong><br>
+      Orientação Administrativa Municipal <strong>nº 001/2026/CTTC</strong></p>
+    </div>
+
+    <div class="reveal acoes-fim">
+      <a class="tab-btn cta-solido" data-censo href="#">Responder o censo</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="rodape">
+  <div class="wrap">
+    <img class="rodape-espiral" src="assets/espiral.png" alt="" aria-hidden="true">
+    <p class="rodape-marca">Observatório VDI</p>
+    <p class="rodape-linha">Censo Semestral do Vale dos Ipês · Superintendência de Políticas de Ciência, Tecnologia e Inovação · Prefeitura Municipal de Lavras</p>
+    <p class="rodape-links">
+      <a href="https://lvrs.com.br">LVRS+</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://launch.lvrs.com.br">Launch LVRS+</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://lavraslab.lvrs.com.br">Lavras Lab</a>
+    </p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
