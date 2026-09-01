@@ -188,6 +188,26 @@ h1 em {
 
 .botao-grande { font-size: 16.5px; padding: 18px 40px; }
 
+/* Campo de pontos da identidade, grande, no vazio embaixo do texto do
+   topo. É textura: fica atrás de tudo e não disputa com a leitura. */
+.pontos-topo {
+  position: absolute;
+  left: -70px;
+  bottom: -110px;
+  width: 360px;
+  opacity: .22;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 30%, transparent 72%);
+}
+
+.topo-grade { position: relative; z-index: 1; }
+
+@media (max-width: 940px) {
+  .pontos-topo { width: 260px; left: -90px; bottom: -80px; opacity: .16; }
+}
+
 /* ---------- o radar ---------- */
 
 .radar {
@@ -209,21 +229,21 @@ h1 em {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 126%;
+  width: 130%;
   transform: translate(-50%, -50%);
-  opacity: .1;
+  opacity: .17;
   pointer-events: none;
   z-index: 0;
   /* Sem a máscara os raios chegam inteiros na borda e competem com o
      radar. Dissolvidos, viram emissão saindo do centro. */
-  -webkit-mask-image: radial-gradient(circle, #000 34%, transparent 74%);
-  mask-image: radial-gradient(circle, #000 34%, transparent 74%);
+  -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 80%);
+  mask-image: radial-gradient(circle, #000 30%, transparent 80%);
 }
 
 .anel {
   fill: none;
-  stroke: var(--fio);
-  stroke-width: 1;
+  stroke: var(--fio-forte);
+  stroke-width: 1.2;
 }
 
 .anel-fora {
@@ -232,11 +252,11 @@ h1 em {
 }
 
 .eixo {
-  stroke: var(--fio);
-  stroke-width: 1;
+  stroke: var(--fio-forte);
+  stroke-width: 1.2;
 }
 
-.vertice { fill: var(--azul); opacity: .55; }
+.vertice { fill: var(--azul); opacity: .85; }
 
 /* O miolo vazio: o que já se sabe hoje, que é nada. */
 .nucleo {
@@ -386,17 +406,27 @@ h2 {
 /* Um elemento da identidade por tese, escolhido pelo sentido: campo de
    pontos para o dado declarado, setas para o peso que cresce, ondas para
    a série que só aparece repetindo o censo. */
-/* Caixa igual para os três, com o desenho contido dentro. Limitando só
-   pela altura, as setas (tira de 222x879) sairiam com 9px de largura ao
-   lado de um círculo de 34 — a mesma armadilha das logos nos cards da
-   vitrine. */
+/* Os motivos da identidade — campo de pontos, setas subindo, onda —
+   redesenhados em SVG no traço da própria página. Como PNG soltos eles
+   vinham cada um com uma espessura, um peso e uma cor, e lado a lado
+   pareciam clipart. Aqui compartilham a espessura e a cor do radar. */
 .marca-tese {
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-  object-position: left center;
-  margin-bottom: 18px;
-  opacity: .85;
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  overflow: visible;
+}
+
+.marca-tese circle { fill: var(--verde); }
+
+.marca-tese polyline,
+.marca-tese path {
+  fill: none;
+  stroke: var(--verde);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .tese {
@@ -445,8 +475,8 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 180px;
-  opacity: .28;
+  width: 300px;
+  opacity: .55;
   pointer-events: none;
 }
 
@@ -533,9 +563,9 @@ h2 {
   position: absolute;
   bottom: -180px;
   left: 50%;
-  width: 620px;
+  width: 820px;
   transform: translateX(-50%);
-  opacity: .08;
+  opacity: .2;
   pointer-events: none;
 }
 
@@ -654,9 +684,9 @@ footer {
   .conduz { margin-bottom: 34px; }
 
   .painel { padding: 28px 22px 30px; }
-  .hachura { width: 120px; }
-  .marca-tese { width: 40px; height: 40px; margin-bottom: 14px; }
-  .espiral-fundo { width: 420px; bottom: -130px; }
+  .hachura { width: 190px; }
+  .marca-tese { width: 42px; height: 42px; margin-bottom: 16px; }
+  .espiral-fundo { width: 480px; bottom: -140px; }
 
   .fecho { padding: 76px 0 84px; }
   .fecho .marca { width: 168px; }

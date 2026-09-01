@@ -14,20 +14,25 @@
 <meta property="og:url" content="https://observatorio.lvrs.com.br/">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
+<!-- O SVG e o que os navegadores modernos usam; o PNG e reserva e vira o
+     icone na tela inicial do celular. A espiral da marca virava borrao em
+     16px, entao o icone e o nonagono do radar, que tem silhueta. -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="180x180" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- A versao no fim do endereco força o navegador a buscar a folha nova quando
      o site é republicado. Incrementar a cada mudança no style.css. -->
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 
 <div class="malha" aria-hidden="true"></div>
 
 <header class="topo">
+  <img class="pontos-topo" src="assets/elementos/pontos.png" alt="" aria-hidden="true">
   <div class="caixa topo-grade">
 
     <div class="topo-texto">
@@ -169,21 +174,21 @@
       <div class="teses">
         <article>
           <!-- Campo de pontos: cada startup que responde vira um dado. -->
-          <img class="marca-tese" src="assets/elementos/pontos.png" alt="" aria-hidden="true">
+          <svg class="marca-tese" viewBox="0 0 48 48" aria-hidden="true"><circle cx="6" cy="6" r="2.6"/><circle cx="15" cy="6" r="2.6"/><circle cx="24" cy="6" r="2.6"/><circle cx="33" cy="6" r="2.6"/><circle cx="42" cy="6" r="2.6"/><circle cx="6" cy="15" r="2.6"/><circle cx="15" cy="15" r="2.6"/><circle cx="24" cy="15" r="2.6"/><circle cx="33" cy="15" r="2.6"/><circle cx="42" cy="15" r="2.6"/><circle cx="6" cy="24" r="2.6"/><circle cx="15" cy="24" r="2.6"/><circle cx="24" cy="24" r="2.6"/><circle cx="33" cy="24" r="2.6"/><circle cx="42" cy="24" r="2.6"/><circle cx="6" cy="33" r="2.6"/><circle cx="15" cy="33" r="2.6"/><circle cx="24" cy="33" r="2.6"/><circle cx="33" cy="33" r="2.6"/><circle cx="42" cy="33" r="2.6"/><circle cx="6" cy="42" r="2.6"/><circle cx="15" cy="42" r="2.6"/><circle cx="24" cy="42" r="2.6"/><circle cx="33" cy="42" r="2.6"/><circle cx="42" cy="42" r="2.6"/></svg>
           <p class="tese">Troca estimativa por dado declarado.</p>
           <p>Lavras decide sobre incentivo fiscal, programa e projeto o tempo todo. Até
           aqui, decidia por impressão.</p>
         </article>
         <article>
           <!-- Setas ascendentes: o peso e o crescimento medidos. -->
-          <img class="marca-tese" src="assets/elementos/setas.png" alt="" aria-hidden="true">
+          <svg class="marca-tese" viewBox="0 0 48 48" aria-hidden="true"><polyline points="10,18 24,6 38,18"/><polyline points="10,30 24,18 38,30"/><polyline points="10,42 24,30 38,42"/></svg>
           <p class="tese">Mede o peso real da tecnologia no PIB.</p>
           <p>Quanto a tecnologia e o agrofoodtech movimentam de fato na economia do
           município — em número, não em discurso.</p>
         </article>
         <article>
           <!-- Ondas: a serie que so aparece repetindo o censo. -->
-          <img class="marca-tese" src="assets/elementos/ondas.png" alt="" aria-hidden="true">
+          <svg class="marca-tese" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 16 q 8 -11 16 0 t 16 0 t 12 0"/><path d="M4 24 q 8 -11 16 0 t 16 0 t 12 0"/><path d="M4 32 q 8 -11 16 0 t 16 0 t 12 0"/></svg>
           <p class="tese">Mostra movimento, não só posição.</p>
           <p>Porque se repete a cada seis meses, revela para onde o ecossistema está
           indo, e não apenas onde ele está.</p>
