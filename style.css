@@ -216,23 +216,36 @@ h1 em {
 .topo .sobrenome { justify-content: center; }
 .acoes { justify-content: center; }
 
-/* Sai de trás da logo, no eixo: a marca emitindo. */
+/* Halo em volta da logo, não fundo atrás dela. A máscara em anel abre um
+   vazio no miolo, para os raios não cruzarem o lockup nem o contorno
+   branco das letras; e apaga as pontas, para não haver corte reto na
+   borda da seção. */
 .topo-irradia {
   position: absolute;
-  top: 250px;
+  top: 258px;
   left: 50%;
-  width: 900px;
-  max-width: 150vw;
+  width: 780px;
+  max-width: 135vw;
   transform: translate(-50%, -50%);
-  opacity: .16;
+  opacity: .13;
   pointer-events: none;
   z-index: 0;
-  -webkit-mask-image: radial-gradient(circle, #000 28%, transparent 76%);
-  mask-image: radial-gradient(circle, #000 28%, transparent 76%);
+  /* Duas máscaras cruzadas: o anel abre o vazio do miolo, e o degradê
+     vertical apaga os raios antes da borda de cima, onde o overflow da
+     seção cortava reto. Sem suporte a mask-composite fica só o anel, que
+     já é o comportamento aceitável. */
+  -webkit-mask-image:
+    radial-gradient(circle, transparent 34%, #000 52%, transparent 86%),
+    linear-gradient(to bottom, transparent 18%, #000 44%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle, transparent 34%, #000 52%, transparent 86%),
+    linear-gradient(to bottom, transparent 18%, #000 44%);
+  mask-composite: intersect;
 }
 
 @media (max-width: 940px) {
-  .topo-irradia { width: 620px; top: 190px; opacity: .13; }
+  .topo-irradia { width: 560px; top: 200px; opacity: .11; }
 }
 
 @media (max-width: 940px) {
