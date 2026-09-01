@@ -14,10 +14,10 @@
 <meta property="og:url" content="https://observatorio.lvrs.com.br/">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- O SVG e o que os navegadores modernos usam; o PNG e reserva e vira o
-     icone na tela inicial do celular. A espiral da marca virava borrao em
-     16px, entao o icone e o nonagono do radar, que tem silhueta. -->
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- O icone e a espiral (elemento 8 da identidade), que E a marca do
+     Observatorio. Vai sobre o verde porque o azul dela some no navy. O 32 e
+     gerado no tamanho certo, em vez de deixar o navegador reduzir o de 180. -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- A versao no fim do endereco força o navegador a buscar a folha nova quando
      o site é republicado. Incrementar a cada mudança no style.css. -->
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=24">
 </head>
 <body>
 
@@ -33,6 +33,7 @@
 
 <header class="topo">
   <img class="pontos-topo" src="assets/elementos/pontos.png" alt="" aria-hidden="true">
+  <img class="topo-irradia" src="assets/elementos/irradia.png" alt="" aria-hidden="true">
   <div class="caixa topo-grade">
 
     <div class="topo-texto">
@@ -52,49 +53,6 @@
       </div>
     </div>
 
-    <!-- O radar é o assunto, não enfeite: nove eixos para os nove blocos do
-         censo, e o miolo vazio porque o primeiro ciclo ainda não fechou. -->
-    <figure class="radar">
-      <svg viewBox="0 0 570 420" role="img" aria-labelledby="radar-titulo">
-        <title id="radar-titulo">Radar das nove dimensões do censo, ainda sem dados</title>
-        <polygon class="anel" points="285.0,176.0 305.6,183.5 316.5,202.4 312.7,224.0 295.9,238.1 274.1,238.1 257.3,224.0 253.5,202.4 264.4,183.5"/>
-        <polygon class="anel" points="285.0,144.0 326.1,159.0 348.0,196.9 340.4,240.0 306.9,268.1 263.1,268.1 229.6,240.0 222.0,196.9 243.9,159.0"/>
-        <polygon class="anel" points="285.0,112.0 346.7,134.5 379.5,191.3 368.1,256.0 317.8,298.2 252.2,298.2 201.9,256.0 190.5,191.3 223.3,134.5"/>
-        <polygon class="anel anel-fora" points="285.0,80.0 367.3,109.9 411.1,185.8 395.9,272.0 328.8,328.3 241.2,328.3 174.1,272.0 158.9,185.8 202.7,109.9"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="285.0" y2="80.0"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="367.3" y2="109.9"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="411.1" y2="185.8"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="395.9" y2="272.0"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="328.8" y2="328.3"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="241.2" y2="328.3"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="174.1" y2="272.0"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="158.9" y2="185.8"/>
-        <line class="eixo" x1="285.0" y1="208.0" x2="202.7" y2="109.9"/>
-        <polygon class="nucleo" points="285.0,193.0 294.6,196.5 299.8,205.4 298.0,215.5 290.1,222.1 279.9,222.1 272.0,215.5 270.2,205.4 275.4,196.5"/>
-        <circle class="centro" cx="285" cy="208" r="3.5"/>
-        <circle class="vertice" cx="285.0" cy="80.0" r="3"/>
-        <circle class="vertice" cx="367.3" cy="109.9" r="3"/>
-        <circle class="vertice" cx="411.1" cy="185.8" r="3"/>
-        <circle class="vertice" cx="395.9" cy="272.0" r="3"/>
-        <circle class="vertice" cx="328.8" cy="328.3" r="3"/>
-        <circle class="vertice" cx="241.2" cy="328.3" r="3"/>
-        <circle class="vertice" cx="174.1" cy="272.0" r="3"/>
-        <circle class="vertice" cx="158.9" cy="185.8" r="3"/>
-        <circle class="vertice" cx="202.7" cy="109.9" r="3"/>
-        <text class="rot" x="285.0" y="58.0" text-anchor="middle">Identificação</text>
-        <text class="rot" x="377.6" y="101.7" text-anchor="start">Sócios</text>
-        <text class="rot" x="426.8" y="187.0" text-anchor="start">Time</text>
-        <text class="rot" x="409.7" y="284.0" text-anchor="start">Mercado</text>
-        <text class="rot" x="334.3" y="347.3" text-anchor="start">Dor e solução</text>
-        <text class="rot" x="235.7" y="347.3" text-anchor="end">Modelo</text>
-        <text class="rot" x="160.3" y="284.0" text-anchor="end">Tração</text>
-        <text class="rot" x="143.2" y="187.0" text-anchor="end">Recursos</text>
-        <text class="rot" x="192.4" y="101.7" text-anchor="end">Vale dos Ipês</text>
-      </svg>
-
-      <figcaption>Maturidade do ecossistema <span>aguardando o 1º ciclo</span></figcaption>
-    </figure>
-
   </div>
 </header>
 
@@ -105,8 +63,8 @@
     <div class="caixa">
       <p class="sobrenome">01 — 09</p>
       <h2>As nove dimensões</h2>
-      <p class="conduz">Cada eixo do radar é um bloco do censo. Juntar isto antes evita
-      parar no meio para procurar número.</p>
+      <p class="conduz">São nove blocos, da identificação da empresa ao lugar dela nos projetos
+      da cidade. Juntar isto antes evita parar no meio para procurar número.</p>
 
       <ol class="dimensoes">
         <li>
@@ -222,10 +180,10 @@
   </section>
 
   <section class="fecho">
-    <img class="espiral-fundo" src="assets/elementos/espiral.png" alt="" aria-hidden="true">
     <div class="caixa">
       <img class="marca" src="assets/logo.png" alt="Observatório VDI" width="760" height="521">
-      <p>O radar só sai do zero com o que as startups daqui responderem.</p>
+      <p>O retrato do ecossistema de Lavras é, hoje, exatamente o que as startups
+      daqui responderem.</p>
       <a class="botao botao-grande" href="https://forms.gle/DjiXtAcWsXYxnbHJ7" target="_blank" rel="noopener">Responder o censo</a>
     </div>
   </section>

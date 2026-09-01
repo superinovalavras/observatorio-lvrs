@@ -1,9 +1,8 @@
 /* ============================================================
    Observatório VDI — Censo Semestral do Vale dos Ipês
 
-   O radar de nove eixos é a âncora da página: ele É o assunto
-   (nove blocos, ainda sem dado), não decoração.
-   Sem JavaScript. Grade de 1120px, tudo reflui no celular.
+   Página de divulgação do censo. Sem JavaScript. Coluna de 1120px que
+   cresce para 1280 em tela larga, e tudo reflui no celular.
    ============================================================ */
 
 :root {
@@ -117,9 +116,8 @@ strong { color: var(--texto); font-weight: 600; }
 
 .topo-grade {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
-  gap: 52px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 
 .marca-topo {
@@ -130,12 +128,13 @@ strong { color: var(--texto); font-weight: 600; }
 
 h1 {
   font-family: var(--display);
-  font-size: clamp(35px, 5vw, 54px);
+  font-size: clamp(38px, 5.6vw, 66px);
   font-weight: 600;
   line-height: 1.08;
   letter-spacing: -.028em;
   color: var(--texto);
   margin: 0 0 26px;
+  max-width: 17ch;
   /* Reparte as linhas para não sobrar palavra solta no fim do título. */
   text-wrap: balance;
 }
@@ -146,11 +145,11 @@ h1 em {
 }
 
 .chamada {
-  font-size: clamp(16px, 1.6vw, 18.5px);
-  line-height: 1.66;
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.62;
   color: var(--corpo);
-  margin: 0 0 38px;
-  max-width: 48ch;
+  margin: 0 0 40px;
+  max-width: 46ch;
 }
 
 .acoes {
@@ -210,28 +209,35 @@ h1 em {
 
 .topo-grade { position: relative; z-index: 1; }
 
+/* Ocupa o lado direito do topo, que ficou livre. Textura, atrás de tudo. */
+.topo-irradia {
+  position: absolute;
+  top: 50%;
+  right: -180px;
+  width: 620px;
+  transform: translateY(-50%);
+  opacity: .16;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(circle, #000 28%, transparent 76%);
+  mask-image: radial-gradient(circle, #000 28%, transparent 76%);
+}
+
+@media (max-width: 940px) {
+  .topo-irradia { width: 440px; right: -190px; opacity: .12; }
+}
+
 @media (max-width: 940px) {
   .pontos-topo { width: 260px; left: -90px; bottom: -80px; opacity: .16; }
 }
 
-/* ---------- o radar ---------- */
-
-.radar {
-  margin: 0;
-  position: relative;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
-.radar svg {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-/* Numa tela larga a coluna trava em 1120px e sobram centenas de pixels
-   vazios dos dois lados. É lá que os elementos da identidade trabalham:
-   grandes, sangrando pela borda, atrás do conteúdo. */
+/* Numa tela larga a coluna trava e sobram centenas de pixels vazios dos
+   dois lados. É lá que os elementos da identidade trabalham: grandes,
+   sangrando pela borda, atrás do conteúdo. */
 .margem {
   position: absolute;
   top: 50%;
@@ -242,9 +248,11 @@ h1 em {
 }
 
 .margem-esq { left: -110px; width: 420px; }
+.margem-dir { right: -130px; width: 460px; }
+.margem-setas { width: 190px; opacity: .2; }
+.margem-pontos { width: 360px; left: -130px; }
 
-/* A onda estava centrada na faixa e batia na marca da primeira tese.
-   Desce para o rodapé da faixa, onde só há fundo. */
+/* A onda desce para o rodapé da faixa, onde só há fundo. */
 .faixa-escura .margem-esq {
   top: auto;
   bottom: -90px;
@@ -253,83 +261,11 @@ h1 em {
   width: 400px;
   opacity: .14;
 }
-.margem-dir { right: -130px; width: 460px; }
-.margem-setas { width: 190px; opacity: .2; }
-.margem-pontos { width: 360px; left: -130px; }
 
-/* Some abaixo de 1360px: sem margem sobrando, elas passariam por cima
-   do texto em vez de ocupar vazio. */
+/* Somem abaixo de 1360px: sem margem sobrando, passariam por cima do
+   texto em vez de ocupar vazio. */
 @media (max-width: 1360px) {
   .margem { display: none; }
-}
-
-.anel {
-  fill: none;
-  stroke: var(--fio-forte);
-  stroke-width: 1.2;
-}
-
-.anel-fora {
-  stroke: var(--fio-forte);
-  fill: rgba(12, 44, 76, .34);
-}
-
-.eixo {
-  stroke: var(--fio-forte);
-  stroke-width: 1.2;
-}
-
-.vertice { fill: var(--azul); opacity: .85; }
-
-/* O miolo vazio: o que já se sabe hoje, que é nada. */
-.nucleo {
-  fill: rgba(0, 245, 160, .14);
-  stroke: var(--verde);
-  stroke-width: 1.5;
-  stroke-dasharray: 3 4;
-}
-
-.centro {
-  fill: var(--verde);
-  animation: pulso 3.4s ease-in-out infinite;
-}
-
-@keyframes pulso {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .35; }
-}
-
-/* O `text-anchor` vem do próprio SVG, calculado por eixo: ao lado direito
-   ancora no começo, ao esquerdo no fim, em cima e embaixo no meio. */
-.rot {
-  font-family: var(--display);
-  font-size: 15px;
-  font-weight: 500;
-  fill: var(--corpo);
-}
-
-.radar figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 26px;
-  font-family: var(--display);
-  font-size: 12px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--fraco);
-}
-
-.radar figcaption span {
-  color: var(--verde);
-  padding-left: 10px;
-  border-left: 1px solid var(--fio-forte);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .centro { animation: none; }
-  html { scroll-behavior: auto; }
 }
 
 /* ---------- faixas ---------- */
@@ -434,7 +370,7 @@ h2 {
 /* Os motivos da identidade — campo de pontos, setas subindo, onda —
    redesenhados em SVG no traço da própria página. Como PNG soltos eles
    vinham cada um com uma espessura, um peso e uma cor, e lado a lado
-   pareciam clipart. Aqui compartilham a espessura e a cor do radar. */
+   pareciam clipart. Aqui compartilham a mesma espessura e a mesma cor. */
 .marca-tese {
   display: block;
   width: 48px;
@@ -583,16 +519,6 @@ h2 {
   border-top: 1px solid var(--fio);
 }
 
-/* A espiral da marca fecha a página, grande e quase invisível. */
-.espiral-fundo {
-  position: absolute;
-  bottom: -180px;
-  left: 50%;
-  width: 820px;
-  transform: translateX(-50%);
-  opacity: .2;
-  pointer-events: none;
-}
 
 .fecho .marca {
   width: 210px;
@@ -658,7 +584,7 @@ footer {
    TELAS MENORES
    ============================================================ */
 
-/* Tablet: o radar desce para baixo do texto e as grades de 3 viram 2. */
+/* Tablet: as grades de 3 viram 2. */
 @media (max-width: 940px) {
   .caixa { padding: 0 32px; }
   .topo { padding: 64px 0 76px; }
@@ -668,7 +594,6 @@ footer {
     gap: 56px;
   }
 
-  .radar { max-width: 520px; margin: 0 auto; }
 
   .dimensoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .teses { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
@@ -692,16 +617,8 @@ footer {
   .botao { display: block; width: 100%; text-align: center; }
   .custo { width: 100%; }
 
-  /* Com 340px de radar os rótulos ficariam com 10px reais; um pouco
-     maiores no viewBox compensam a redução. */
-  .radar { max-width: 100%; }
-  .rot { font-size: 17px; }
-
   /* A legenda quebra em duas linhas aqui: sem o fio, que ficaria pendurado
      no começo da segunda. */
-  /* Sem o fio divisor as duas partes ficavam emendadas numa frase só. */
-  .radar figcaption { margin-top: 20px; font-size: 11px; gap: 6px; }
-  .radar figcaption span { flex-basis: 100%; padding-left: 0; border-left: 0; }
 
   .faixa { padding: 56px 0; }
   .dimensoes { grid-template-columns: minmax(0, 1fr); }
@@ -712,7 +629,6 @@ footer {
   .painel { padding: 28px 22px 30px; }
   .hachura { width: 190px; }
   .marca-tese { width: 42px; height: 42px; margin-bottom: 16px; }
-  .espiral-fundo { width: 480px; bottom: -140px; }
 
   .fecho { padding: 76px 0 84px; }
   .fecho .marca { width: 168px; }
