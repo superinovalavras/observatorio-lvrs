@@ -41,7 +41,13 @@ export default async function Startups({ searchParams }: PageProps<"/admin/start
           <tbody className="divide-y divide-papel-fio">
             {startups.map((s) => (
               <tr key={s.id}>
-                <td className="px-5 py-3">
+                <td className="flex items-center gap-3 px-5 py-3">
+                  <span className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-papel-fio bg-white">
+                    {s.logo_url && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={s.logo_url} alt="" className="max-h-full max-w-full object-contain p-0.5" />
+                    )}
+                  </span>
                   <Link href={`/admin/startups/${s.id}`} className="font-medium hover:underline">
                     {s.nome}
                   </Link>

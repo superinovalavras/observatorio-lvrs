@@ -21,6 +21,39 @@ const inteiro = (fd: FormData, k: string) => {
 const lista = (fd: FormData, k: string) => fd.getAll(k).map(String).filter(Boolean);
 const marcado = (fd: FormData, k: string) => fd.get(k) === "on";
 
+// ───── Logos (bucket público "logos" do Supabase Storage) ─────
+
+const FORMATOS: Record<string, string> = { "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" };
+
+/**
+ * Lê os campos "logo" (arquivo) e "remover_logo" do formulário.
+ * url === undefined: não mexer · null: remover · string: nova logo já enviada.
+ */
+async function tratarLogo(fd: FormData, pasta: string, id: string): Promise<{ url?: string | null; erro?: string }> {
+  if (marcado(fd, "remover_logo")) return { url: null };
+  const f = fd.get("logo");
+  if (!(f instanceof File) || f.size === 0) return {};
+  const ext = FORMATOS[f.type];
+  if (!ext) return { erro: "a logo precisa ser PNG, JPG ou WEBP." };
+  if (f.size > 1_048_576) return { erro: "a logo tem mais de 1 MB; reduza a imagem." };
+  const caminho = `${pasta}/${id}-${Date.now()}.${ext}`;
+  const sb = servico();
+  const { error } = await sb.storage.from("logos").upload(caminho, f, { contentType: f.type, upsert: true });
+  if (error) {
+    console.error("logo", error.message);
+    return { erro: "não foi possível enviar a logo." };
+  }
+  return { url: sb.storage.from("logos").getPublicUrl(caminho).data.publicUrl };
+}
+
+/** Grava a logo depois do registro existir (precisa do id). Devolve aviso se o envio falhar. */
+async function gravarLogo(fd: FormData, tabela: string, id: string): Promise<string | null> {
+  const logo = await tratarLogo(fd, tabela, id);
+  if (logo.erro) return logo.erro;
+  if (logo.url !== undefined) await servico().from(tabela).update({ logo_url: logo.url }).eq("id", id);
+  return null;
+}
+
 /** Tudo o que o site público lê muda junto. */
 function republicar() {
   for (const p of ["/", "/startups", "/instituicoes", "/programas", "/tracao", "/investimento"]) revalidatePath(p);
@@ -209,7 +242,9 @@ export async function salvarStartup(_: Resultado, fd: FormData): Promise<Resulta
     startupId = data.id;
   }
   if (respostaId) await sb.from("respostas").update({ status: "aprovada", startup_id: startupId }).eq("id", respostaId);
+  const avisoLogo = await gravarLogo(fd, "startups", startupId!);
   republicar();
+  if (avisoLogo) return { ok: false, erro: `Startup salva, mas ${avisoLogo}` };
   redirect(respostaId ? "/admin" : "/admin/startups?salvo=1");
 }
 
@@ -244,10 +279,13 @@ export async function salvarInstituicao(_: Resultado, fd: FormData): Promise<Res
   };
   if (!dados.nome) return { ok: false, erro: "Informe o nome." };
   const q = servico().from("instituicoes");
-  const { error } = id ? await q.update(dados).eq("id", id) : await q.insert(dados);
-  if (error) return { ok: false, erro: "Não foi possível salvar." };
+  const { data, error } = id
+    ? await q.update(dados).eq("id", id).select("id").single()
+    : await q.insert(dados).select("id").single();
+  if (error || !data) return { ok: false, erro: "Não foi possível salvar." };
+  const avisoLogo = await gravarLogo(fd, "instituicoes", data.id);
   republicar();
-  return { ok: true, msg: "Salvo." };
+  return avisoLogo ? { ok: false, erro: `Salvo, mas ${avisoLogo}` } : { ok: true, msg: "Salvo." };
 }
 
 export async function excluirInstituicao(id: string) {
@@ -277,10 +315,12 @@ export async function salvarPrograma(_: Resultado, fd: FormData): Promise<Result
   };
   if (!dados.nome) return { ok: false, erro: "Informe o nome." };
   const q = servico().from("programas");
-  const { error } = id ? await q.update(dados).eq("id", id) : await q.insert({ ...dados, id: slug(dados.nome) });
+  const idFinal = id ?? slug(dados.nome);
+  const { error } = id ? await q.update(dados).eq("id", id) : await q.insert({ ...dados, id: idFinal });
   if (error) return { ok: false, erro: error.code === "23505" ? "Já existe um item com esse nome." : "Não foi possível salvar." };
+  const avisoLogo = await gravarLogo(fd, "programas", idFinal);
   republicar();
-  return { ok: true, msg: "Salvo." };
+  return avisoLogo ? { ok: false, erro: `Salvo, mas ${avisoLogo}` } : { ok: true, msg: "Salvo." };
 }
 
 export async function excluirPrograma(id: string) {

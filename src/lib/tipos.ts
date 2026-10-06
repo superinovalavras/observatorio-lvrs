@@ -13,6 +13,7 @@ export type Startup = {
   cidade: string | null;
   instituicao_id: string | null;
   resumo: string | null;
+  logo_url: string | null;
   site: string | null;
   instagram: string | null;
   linkedin: string | null;
@@ -46,6 +47,7 @@ export type StartupPublica = {
   nome: string;
   vertical: string | null;
   fase: string | null;
+  logo_url: string | null;
   site: string | null;
   instagram: string | null;
   linkedin: string | null;
@@ -58,6 +60,7 @@ export type Instituicao = {
   tipo: "ies" | "ambiente";
   descricao: string | null;
   site: string | null;
+  logo_url: string | null;
   ativa: boolean;
   ordem: number;
 };
@@ -68,6 +71,7 @@ export type Programa = {
   tipo: "projeto_lvrs" | "edital" | "incentivo" | "programa";
   descricao: string | null;
   link: string | null;
+  logo_url: string | null;
   ativo: boolean;
   ordem: number;
 };

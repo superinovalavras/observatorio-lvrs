@@ -89,8 +89,12 @@ function Grupo({ titulo, lista }: { titulo: string; lista: Instituicao[] }) {
       <h2 className="font-display text-lg font-semibold text-texto">{titulo}</h2>
       <ul className="mt-4 divide-y divide-fio">
         {lista.map((i) => (
-          <li key={i.id} className="flex items-start justify-between gap-4 py-3.5">
-            <div>
+          <li key={i.id} className="flex items-start gap-4 py-3.5">
+            {i.logo_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={i.logo_url} alt="" className="size-11 shrink-0 rounded-lg bg-white object-contain p-1" loading="lazy" />
+            )}
+            <div className="flex-1">
               <p className="font-medium text-texto">
                 {i.sigla && i.sigla !== i.nome ? (
                   <>

@@ -30,12 +30,12 @@ export const INDICADORES: Omit<Indicador, "id">[] = [
 ];
 
 export const INSTITUICOES: Omit<Instituicao, "id">[] = [
-  { nome: "Universidade Federal de Lavras", sigla: "UFLA", tipo: "ies", descricao: "Universidade federal, referência em ciências agrárias e de alimentos.", site: "https://ufla.br", ativa: true, ordem: 1 },
-  { nome: "Centro Universitário de Lavras", sigla: "Unilavras", tipo: "ies", descricao: null, site: "https://unilavras.edu.br", ativa: true, ordem: 2 },
-  { nome: "Fadminas", sigla: "Fadminas", tipo: "ies", descricao: null, site: null, ativa: true, ordem: 3 },
-  { nome: "Fagammon", sigla: "Fagammon", tipo: "ies", descricao: null, site: null, ativa: true, ordem: 4 },
-  { nome: "IpêTech", sigla: "IpêTech", tipo: "ambiente", descricao: null, site: null, ativa: true, ordem: 5 },
-  { nome: "YouX Lab", sigla: "YouX Lab", tipo: "ambiente", descricao: "Talentos digitais e inclusão produtiva.", site: null, ativa: true, ordem: 6 },
+  { nome: "Universidade Federal de Lavras", sigla: "UFLA", tipo: "ies", descricao: "Universidade federal, referência em ciências agrárias e de alimentos.", site: "https://ufla.br", logo_url: null, ativa: true, ordem: 1 },
+  { nome: "Centro Universitário de Lavras", sigla: "Unilavras", tipo: "ies", descricao: null, site: "https://unilavras.edu.br", logo_url: null, ativa: true, ordem: 2 },
+  { nome: "Fadminas", sigla: "Fadminas", tipo: "ies", descricao: null, site: null, logo_url: null, ativa: true, ordem: 3 },
+  { nome: "Fagammon", sigla: "Fagammon", tipo: "ies", descricao: null, site: null, logo_url: null, ativa: true, ordem: 4 },
+  { nome: "IpêTech", sigla: "IpêTech", tipo: "ambiente", descricao: null, site: null, logo_url: null, ativa: true, ordem: 5 },
+  { nome: "YouX Lab", sigla: "YouX Lab", tipo: "ambiente", descricao: "Talentos digitais e inclusão produtiva.", site: null, logo_url: null, ativa: true, ordem: 6 },
 ];
 
 const SUBTITULOS: Record<string, string> = {
@@ -61,11 +61,12 @@ export const PROGRAMAS: Programa[] = [
     tipo: "projeto_lvrs" as const,
     descricao: SUBTITULOS[p.id] ?? null,
     link: null,
+    logo_url: null,
     ativo: true,
     ordem: i + 1,
   })),
-  { id: "iss-tecnologico", nome: "ISS Tecnológico", tipo: "incentivo", descricao: "Incentivo fiscal municipal para empresas de base tecnológica.", link: null, ativo: true, ordem: 20 },
-  { id: "iptu", nome: "IPTU", tipo: "incentivo", descricao: "Incentivo fiscal municipal sobre o imóvel.", link: null, ativo: true, ordem: 21 },
-  { id: "launch", nome: "Launch LVRS+", tipo: "programa", descricao: "Programa de lançamento de startups.", link: "https://launch.lvrs.com.br", ativo: true, ordem: 30 },
-  { id: "lavras-lab", nome: "Lavras Lab", tipo: "programa", descricao: null, link: "https://lavraslab.lvrs.com.br", ativo: true, ordem: 31 },
+  { id: "iss-tecnologico", nome: "ISS Tecnológico", tipo: "incentivo", descricao: "Incentivo fiscal municipal para empresas de base tecnológica.", link: null, logo_url: null, ativo: true, ordem: 20 },
+  { id: "iptu", nome: "IPTU", tipo: "incentivo", descricao: "Incentivo fiscal municipal sobre o imóvel.", link: null, logo_url: null, ativo: true, ordem: 21 },
+  { id: "launch", nome: "Launch LVRS+", tipo: "programa", descricao: "Programa de lançamento de startups.", link: "https://launch.lvrs.com.br", logo_url: null, ativo: true, ordem: 30 },
+  { id: "lavras-lab", nome: "Lavras Lab", tipo: "programa", descricao: null, link: "https://lavraslab.lvrs.com.br", logo_url: null, ativo: true, ordem: 31 },
 ];

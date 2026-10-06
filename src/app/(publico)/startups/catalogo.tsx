@@ -110,7 +110,13 @@ export function Catalogo({ startups, link }: { startups: StartupPublica[]; link:
                 )}
                 {s.fase && <span className="rounded-full border border-fio-forte px-2.5 py-1 text-xs">{s.fase}</span>}
               </div>
-              <h2 className="mt-4 font-display text-xl font-semibold text-texto">{s.nome}</h2>
+              <div className="mt-4 flex items-center gap-3">
+                {s.logo_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.logo_url} alt="" className="size-12 shrink-0 rounded-xl bg-white object-contain p-1.5" loading="lazy" />
+                )}
+                <h2 className="font-display text-xl font-semibold text-texto">{s.nome}</h2>
+              </div>
               <div className="mt-auto flex flex-wrap gap-2 pt-5">
                 {s.site && <Elo href={s.site} rotulo="Site" nome={s.nome} />}
                 {s.instagram && <Elo href={s.instagram} rotulo="Instagram" nome={s.nome} />}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, type ReactNode } from "react";
+import { useActionState, useState, type ReactNode } from "react";
 import { Loader2 } from "lucide-react";
 import type { Resultado } from "@/lib/server/acoes";
 
@@ -76,6 +76,56 @@ export function TituloAdmin({ titulo, sub, acoes }: { titulo: string; sub?: Reac
         {sub && <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">{sub}</p>}
       </div>
       {acoes}
+    </div>
+  );
+}
+
+/** Logo: mostra a atual, prévia do arquivo escolhido e opção de remover. PNG/JPG/WEBP até 1 MB. */
+export function CampoLogo({ atual, nome }: { atual?: string | null; nome?: string }) {
+  const [previa, setPrevia] = useState<string | null>(null);
+  const [remover, setRemover] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
+  const mostrar = remover ? null : (previa ?? atual ?? null);
+  return (
+    <div className="flex items-center gap-4">
+      <div className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl border border-papel-fio bg-white">
+        {mostrar ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={mostrar} alt={nome ? `Logo de ${nome}` : "Logo"} className="max-h-full max-w-full object-contain p-1.5" />
+        ) : (
+          <span className="text-[11px] text-slate-400">sem logo</span>
+        )}
+      </div>
+      <div className="space-y-1.5 text-sm">
+        <label className={`${btnContorno} h-9 cursor-pointer`}>
+          {atual || previa ? "Trocar logo" : "Enviar logo"}
+          <input
+            type="file"
+            name="logo"
+            accept="image/png,image/jpeg,image/webp"
+            className="sr-only"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              setErro(null);
+              if (!f) return setPrevia(null);
+              if (f.size > 1_048_576) {
+                setErro("Arquivo com mais de 1 MB. Reduza a imagem.");
+                e.target.value = "";
+                return setPrevia(null);
+              }
+              setRemover(false);
+              setPrevia(URL.createObjectURL(f));
+            }}
+          />
+        </label>
+        {atual && (
+          <label className="flex items-center gap-2 text-xs text-slate-600">
+            <input type="checkbox" name="remover_logo" checked={remover} onChange={(e) => setRemover(e.target.checked)} className="size-3.5 accent-[#0a2540]" />
+            Remover logo
+          </label>
+        )}
+        <p className="text-xs text-slate-500">{erro ?? "PNG, JPG ou WEBP, até 1 MB. Fundo transparente fica melhor."}</p>
+      </div>
     </div>
   );
 }

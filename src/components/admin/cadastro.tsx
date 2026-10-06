@@ -3,12 +3,13 @@
 import { useState, useTransition } from "react";
 import { ChevronDown, Loader2, Plus, Trash2 } from "lucide-react";
 import type { Resultado } from "@/lib/server/acoes";
-import { Campo, CartaoAdmin, Formulario, btnContorno, btnPerigo, inputCls } from "./ui";
+import { Campo, CampoLogo, CartaoAdmin, Formulario, btnContorno, btnPerigo, inputCls } from "./ui";
 
 export type CampoCadastro =
   | { nome: string; rotulo: string; tipo?: "texto" | "numero" | "url"; largo?: boolean; ajuda?: string }
   | { nome: string; rotulo: string; tipo: "area"; largo?: boolean; ajuda?: string }
   | { nome: string; rotulo: string; tipo: "marca"; ajuda?: string }
+  | { nome: string; rotulo: string; tipo: "logo"; ajuda?: string }
   | { nome: string; rotulo: string; tipo: "opcoes"; opcoes: { valor: string; rotulo: string }[]; ajuda?: string };
 
 type Linha = { id: string } & Record<string, unknown>;
@@ -73,6 +74,14 @@ export function Cadastro({
                 onClick={() => setAberto(aberto === l.id ? null : l.id)}
                 aria-expanded={aberto === l.id}
               >
+                {"logo_url" in l && (
+                  <span className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-papel-fio bg-white">
+                    {l.logo_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={String(l.logo_url)} alt="" className="max-h-full max-w-full object-contain p-0.5" />
+                    ) : null}
+                  </span>
+                )}
                 <span className="flex-1">
                   <span className="font-medium">{titulo(l)}</span>
                   {resumo(l) && <span className="block text-xs text-slate-500">{resumo(l)}</span>}
@@ -103,6 +112,13 @@ function Campos({ campos, valores = {} }: { campos: CampoCadastro[]; valores?: R
     <div className="grid gap-4 sm:grid-cols-2">
       {campos.map((c) => {
         const v = valores[c.nome];
+        if (c.tipo === "logo")
+          return (
+            <div key={c.nome} className="sm:col-span-2">
+              <p className="mb-1.5 text-[13px] font-medium text-tinta">{c.rotulo}</p>
+              <CampoLogo atual={(v as string | null) ?? null} nome={String(valores.nome ?? "")} />
+            </div>
+          );
         if (c.tipo === "marca")
           return (
             <label key={c.nome} className="flex items-center gap-2 self-end pb-2 text-sm">

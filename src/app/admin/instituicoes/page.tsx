@@ -32,6 +32,7 @@ export default async function Instituicoes() {
           },
           { nome: "descricao", rotulo: "Descrição curta", tipo: "area" },
           { nome: "site", rotulo: "Site", tipo: "url" },
+          { nome: "logo_url", rotulo: "Logo", tipo: "logo" },
           { nome: "ordem", rotulo: "Ordem", tipo: "numero" },
           { nome: "ativa", rotulo: "Ativa (aparece no site)", tipo: "marca" },
         ]}

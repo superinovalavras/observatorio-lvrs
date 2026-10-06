@@ -17,7 +17,7 @@ import {
   TECNOLOGIAS,
   VERTICAIS,
 } from "@/lib/censo";
-import { Campo, CartaoAdmin, Formulario, btnContorno, btnVerde, inputCls } from "./ui";
+import { Campo, CampoLogo, CartaoAdmin, Formulario, btnContorno, btnVerde, inputCls } from "./ui";
 
 type Props = {
   inicial: Partial<Startup>;
@@ -80,6 +80,10 @@ export function FormStartup({ inicial: s, instituicoes, projetos, respostaId, ro
               <span className="block text-xs text-slate-500">Marque só se a resposta do formulário disser “Sim” à autorização.</span>
             </span>
           </label>
+          <div className="mt-4">
+            <CampoLogo atual={s.logo_url} nome={s.nome ?? undefined} />
+            <p className="mt-2 text-xs text-slate-500">A logo só aparece na vitrine se a startup autorizou.</p>
+          </div>
           <div className={`mt-4 grid gap-4 sm:grid-cols-3 ${consentiu ? "" : "pointer-events-none opacity-40"}`}>
             <LinkPublico nome="site" rotulo="Site" valor={s.site} publico={s.publico_site ?? true} />
             <LinkPublico nome="instagram" rotulo="Instagram" valor={s.instagram} publico={s.publico_instagram ?? false} />

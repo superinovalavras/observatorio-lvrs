@@ -48,6 +48,7 @@ export function startupsDemo(): Startup[] {
       cidade: "Lavras",
       instituicao_id: r() < 0.6 ? `inst-${1 + Math.floor(r() * 3)}` : null,
       resumo: null,
+      logo_url: null,
       site: r() < 0.7 ? "https://exemplo.com.br" : null,
       instagram: null,
       linkedin: null,

@@ -39,6 +39,7 @@ export default async function Programas() {
           },
           { nome: "link", rotulo: "Link", tipo: "url" },
           { nome: "descricao", rotulo: "Descrição curta", tipo: "area" },
+          { nome: "logo_url", rotulo: "Logo", tipo: "logo" },
           { nome: "ordem", rotulo: "Ordem", tipo: "numero" },
           { nome: "ativo", rotulo: "Ativo (aparece no site)", tipo: "marca" },
         ]}

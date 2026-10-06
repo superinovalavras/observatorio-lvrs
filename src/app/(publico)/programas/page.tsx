@@ -98,7 +98,12 @@ export default async function Programas() {
         <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {projetos.map((x, i) => (
             <li key={x.id} className="flex gap-4 rounded-2xl border border-fio bg-fundo-2/70 p-4">
-              <span className="font-display text-sm font-semibold tabular-nums text-verde">{String(i + 1).padStart(2, "0")}</span>
+              {x.logo_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={x.logo_url} alt="" className="size-10 shrink-0 rounded-lg bg-white object-contain p-1" loading="lazy" />
+              ) : (
+                <span className="font-display text-sm font-semibold tabular-nums text-verde">{String(i + 1).padStart(2, "0")}</span>
+              )}
               <div>
                 <p className="font-medium text-texto">{x.nome}</p>
                 {x.descricao && <p className="mt-0.5 text-sm text-fraco">{x.descricao}</p>}
@@ -113,6 +118,10 @@ export default async function Programas() {
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {outros.map((x) => (
               <li key={x.id} className="flex flex-col rounded-2xl border border-fio bg-fundo-2/70 p-4">
+                {x.logo_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={x.logo_url} alt="" className="mb-3 h-10 w-auto max-w-[140px] self-start rounded-md bg-white object-contain p-1" loading="lazy" />
+                )}
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-fraco">{TIPO[x.tipo]}</p>
                 <p className="mt-1.5 font-medium text-texto">{x.nome}</p>
                 {x.descricao && <p className="mt-1 text-sm text-fraco">{x.descricao}</p>}

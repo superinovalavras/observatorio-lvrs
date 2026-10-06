@@ -17,6 +17,7 @@ export default async function Startups() {
       nome: s.nome,
       vertical: s.vertical,
       fase: s.fase,
+      logo_url: s.logo_url,
       site: s.publico_site ? s.site : null,
       instagram: s.publico_instagram ? s.instagram : null,
       linkedin: s.publico_linkedin ? s.linkedin : null,
