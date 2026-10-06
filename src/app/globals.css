@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/*
+  Identidade do Observatório VDI — a mesma da v1 (navy de instrumento + verde
+  de sinal). É um satélite do LVRS+, com cara própria, como o Launch e o Lavras Lab.
+  O verde é a cor do dado e da ação; o azul-claro é a cor do contexto (Lavras em números).
+*/
+:root {
+  --tinta: #061727;
+  --fundo: #0a2540;
+  --fundo-2: #0c2c4c;
+  --painel: #0f3355;
+  --verde: #00f5a0;
+  --azul: #7fb2f0;
+  --texto: #f2f7fb;
+  --corpo: #b9c9d9;
+  --fraco: #869db4;
+  --fio: rgba(127, 178, 240, 0.18);
+  --fio-forte: rgba(127, 178, 240, 0.34);
+  /* painel admin: papel claro para trabalho longo */
+  --papel: #f6f8fb;
+  --papel-fio: #dce4ee;
+}
+
+@theme inline {
+  --color-tinta: var(--tinta);
+  --color-fundo: var(--fundo);
+  --color-fundo-2: var(--fundo-2);
+  --color-painel: var(--painel);
+  --color-verde: var(--verde);
+  --color-azul: var(--azul);
+  --color-texto: var(--texto);
+  --color-corpo: var(--corpo);
+  --color-fraco: var(--fraco);
+  --color-fio: var(--fio);
+  --color-fio-forte: var(--fio-forte);
+  --color-papel: var(--papel);
+  --color-papel-fio: var(--papel-fio);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--corpo);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Papel milimetrado do topo, herdado da v1: textura de instrumento de medição. */
+.malha {
+  background-image:
+    linear-gradient(rgba(127, 178, 240, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 178, 240, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 0%, transparent 75%);
+}
+
+:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Barras crescem a partir da base ao entrar na tela — cada uma com um atraso
+   curto, como uma leitura sendo registrada. */
+@keyframes cresce {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.barra {
+  transform-origin: left center;
+  animation: cresce 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Números dos KPIs sobem um pouco e aparecem. */
+@keyframes surge {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.surge { animation: surge 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* O botão do censo pulsa um anel discreto: é o convite permanente da página. */
+@keyframes anel {
+  0% { box-shadow: 0 0 0 0 rgba(0, 245, 160, 0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 245, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 245, 160, 0); }
+}
+.convite { animation: anel 2.6s ease-out infinite; }
+
+/* Varredura do estado vazio: o instrumento ligado, esperando sinal. */
+@keyframes varre {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.varredura { animation: varre 4s linear infinite; transform-origin: 50% 50%; }
+
+/* Colunas (faixas ordenadas, como um histograma) sobem do eixo. */
+@keyframes sobe {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.coluna {
+  transform-origin: bottom center;
+  animation: sobe 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Barra de partes de um todo: revela da esquerda para a direita, numa passada só. */
+@keyframes revela {
+  from { clip-path: inset(0 100% 0 0 round 999px); }
+  to { clip-path: inset(0 0 0 0 round 999px); }
+}
+.revela { animation: revela 1100ms cubic-bezier(0.65, 0, 0.35, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .barra, .surge, .convite, .varredura, .coluna, .revela { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Rolagem horizontal das abas no celular sem barra aparente. */
+.sem-barra { scrollbar-width: none; }
+.sem-barra::-webkit-scrollbar { display: none; }
+
+/* Elemento do topo: entra deslizando e respira devagar, sem disputar com o texto. */
+@keyframes flutua {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+/* A entrada para em 0.17 (não em 1): a opacidade da textura é calibrada. */
+@keyframes entra {
+  from { opacity: 0; translate: 24px 0; }
+  to { opacity: 0.17; translate: 0 0; }
+}
+.elemento { animation: entra 900ms ease-out both, flutua 9s ease-in-out 900ms infinite; }
+@media (prefers-reduced-motion: reduce) { .elemento { animation: none; } }
