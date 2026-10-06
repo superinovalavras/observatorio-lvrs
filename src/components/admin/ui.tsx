@@ -80,11 +80,38 @@ export function TituloAdmin({ titulo, sub, acoes }: { titulo: string; sub?: Reac
   );
 }
 
-/** Logo: mostra a atual, prévia do arquivo escolhido e opção de remover. PNG/JPG/WEBP até 1 MB. */
+/**
+ * Reduz a imagem no navegador antes de enviar: lado maior até 800 px, em WEBP
+ * (mantém transparência). Assim qualquer arquivo da equipe serve, e o site
+ * carrega logos de poucos KB. SVG também entra e vira imagem.
+ */
+async function reduzir(f: File): Promise<File> {
+  const url = URL.createObjectURL(f);
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const max = 800;
+    const escala = Math.min(1, max / Math.max(img.naturalWidth || max, img.naturalHeight || max));
+    const w = Math.max(1, Math.round((img.naturalWidth || max) * escala));
+    const h = Math.max(1, Math.round((img.naturalHeight || max) * escala));
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+    const blob = await new Promise<Blob | null>((ok) => canvas.toBlob(ok, "image/webp", 0.9));
+    if (!blob) throw new Error("sem blob");
+    return new File([blob], f.name.replace(/\.[^.]+$/, "") + ".webp", { type: "image/webp" });
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+/** Logo: mostra a atual, prévia do arquivo escolhido e opção de remover. */
 export function CampoLogo({ atual, nome }: { atual?: string | null; nome?: string }) {
   const [previa, setPrevia] = useState<string | null>(null);
   const [remover, setRemover] = useState(false);
-  const [erro, setErro] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const mostrar = remover ? null : (previa ?? atual ?? null);
   return (
     <div className="flex items-center gap-4">
@@ -102,19 +129,31 @@ export function CampoLogo({ atual, nome }: { atual?: string | null; nome?: strin
           <input
             type="file"
             name="logo"
-            accept="image/png,image/jpeg,image/webp"
+            accept="image/png,image/jpeg,image/webp,image/svg+xml"
             className="sr-only"
-            onChange={(e) => {
-              const f = e.target.files?.[0];
-              setErro(null);
+            onChange={async (e) => {
+              const campo = e.target;
+              const f = campo.files?.[0];
+              setInfo(null);
               if (!f) return setPrevia(null);
-              if (f.size > 1_048_576) {
-                setErro("Arquivo com mais de 1 MB. Reduza a imagem.");
-                e.target.value = "";
-                return setPrevia(null);
+              if (f.size > 15 * 1_048_576) {
+                campo.value = "";
+                setPrevia(null);
+                return setInfo("Arquivo com mais de 15 MB.");
               }
-              setRemover(false);
-              setPrevia(URL.createObjectURL(f));
+              try {
+                const menor = await reduzir(f);
+                const dt = new DataTransfer();
+                dt.items.add(menor);
+                campo.files = dt.files;
+                setRemover(false);
+                setPrevia(URL.createObjectURL(menor));
+                setInfo(`Pronta para enviar: ${Math.max(1, Math.round(menor.size / 1024))} KB (era ${Math.round(f.size / 1024)} KB).`);
+              } catch {
+                campo.value = "";
+                setPrevia(null);
+                setInfo("Não consegui ler essa imagem. Use PNG, JPG, WEBP ou SVG.");
+              }
             }}
           />
         </label>
@@ -124,7 +163,7 @@ export function CampoLogo({ atual, nome }: { atual?: string | null; nome?: strin
             Remover logo
           </label>
         )}
-        <p className="text-xs text-slate-500">{erro ?? "PNG, JPG ou WEBP, até 1 MB. Fundo transparente fica melhor."}</p>
+        <p className="text-xs text-slate-500">{info ?? "Qualquer tamanho até 15 MB: o painel reduz sozinho. Fundo transparente fica melhor."}</p>
       </div>
     </div>
   );
