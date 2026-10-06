@@ -35,7 +35,12 @@ export async function entrar(_: Resultado, fd: FormData): Promise<Resultado> {
   if (!email || !senha) return { ok: false, erro: "Informe e-mail e senha." };
   const sb = await supabaseSessao();
   const { data, error } = await sb.auth.signInWithPassword({ email, password: senha });
-  if (error || !data.user) return { ok: false, erro: "E-mail ou senha incorretos." };
+  if (error || !data.user) {
+    console.error("entrar", error?.status, error?.code);
+    if (error?.code === "invalid_credentials") return { ok: false, erro: "E-mail ou senha incorretos." };
+    if (error?.code === "email_not_confirmed") return { ok: false, erro: "E-mail ainda não confirmado no Supabase." };
+    return { ok: false, erro: `Não foi possível entrar (${error?.code ?? error?.status ?? "erro desconhecido"}).` };
+  }
   if (!(await ehAdmin(data.user.id))) {
     await sb.auth.signOut();
     return { ok: false, erro: "Esta conta não tem acesso ao painel do Observatório." };
